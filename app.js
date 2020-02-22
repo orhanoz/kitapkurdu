@@ -20,6 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/login', require('./routes/login'));
+app.use('/isbn', require('./routes/isbn'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

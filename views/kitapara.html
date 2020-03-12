@@ -1,14 +1,30 @@
 <!doctype html>
 <html lang="en">
-  <head>
-  	<title>KitapKurdu</title>
+
+<head>
+
+    <style>
+        .form-control-borderless {
+            border: none;
+        }
+
+        .form-control-borderless:hover,
+        .form-control-borderless:active,
+        .form-control-borderless:focus {
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
+    <title>KitapKurdu</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+        integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-		
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
 		
@@ -95,12 +111,35 @@
             </div>
           </div>
         </nav>
+<h2 class="mb-4">Kitap Kurdu Ekleme / Arama </h2>
+<div class="container">
+    <br />
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-12">
+            <form class="card card-sm">
+                <div class="card-body row no-gutters align-items-center">
+                    <div class="col-auto">
+                        <i class="fas fa-search" style="font-size: large;"></i>
+                    </div>
+                    <!--end of col-->
+                    <div class="col">
+                        <input class="form-control form-control-lg form-control-borderless" type="search"
+                            placeholder="ISBN Girin">
+                    </div>
+                    <!--end of col-->
+                    <div class="col-auto">
+                        <button class="btn btn-lg btn-success" type="submit" >Ara</button>
+                    </div>
+                    <!--end of col-->
+                </div>
+            </form>
+        </div>
+        <!--end of col-->
+    </div>
+</div>
 
-        <h2 class="mb-4">Kitap Kurdu'na Hoşgeldiniz.</h2>
-        <p>Kitap Kurdu'nda rahatlıkla sevdiğiniz kitaba yorum yapıp diğer okurların yorumlarını görebilirsiniz.</p>
-        <p>.........</p>
-      </div>
-		</div>
+</div>
+</div>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.js"></script>

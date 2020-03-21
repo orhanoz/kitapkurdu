@@ -15,9 +15,205 @@
       outline: none;
       box-shadow: none;
     }
+.btn-grey{
+    background-color:#D8D8D8;
+	color:#FFF;
+}
+.rating-block{
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px 15px 20px 15px;
+	border-radius:3px;
+}
+.bold{
+	font-weight:700;
+}
+.padding-bottom-7{
+	padding-bottom:7px;
+}
+div.some-class {
+    display: inline-block;
+    margin-right: 5px;
+    
+}
+.review-block{
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px;
+	border-radius:3px;
+	margin-bottom:15px;
+}
+.review-block-name{
+	font-size:12px;
+	margin:10px 0;
+}
+.review-block-date{
+	font-size:12px;
+}
+.review-block-rate{
+	font-size:13px;
+	margin-bottom:15px;
+}
+.review-block-title{
+	font-size:15px;
+	font-weight:700;
+	margin-bottom:10px;
+}
+.review-block-description{
+	font-size:13px;
+}
+.comment-wrapper .panel-body {
+    max-height:650px;
+    overflow:auto;
+}
+
+.comment-wrapper .media-list .media img {
+    width:64px;
+    height:64px;
+    border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:1px dashed #efefef;
+    margin-bottom:25px;
+}
+rating-loading{
+    width:25px;
+    height:25px;
+    font-size:0;
+    color:#fff;
+    background:url(../img/loading.gif) top left no-repeat;border:none
+    }
+.rating-container .rating-stars
+    {position:relative;
+    cursor:pointer;
+    vertical-align:middle;
+    display:inline-block;
+    overflow:hidden;
+    white-space:nowrap
+         }
+         .rating-container .rating-input
+         {position:absolute;
+         cursor:pointer;
+         width:100%;
+         height:1px;
+         bottom:0;left:0;
+         font-size:1px;
+         border:none;
+         background:0 0;
+         padding:0;
+         margin:0
+         }
+         .rating-disabled .rating-input,.rating-disabled .rating-stars
+         {
+             cursor:not-allowed
+             
+         }
+         .rating-container .star{
+             display:inline-block;
+             margin:0 3px;
+             text-align:center
+         }
+         .rating-container .empty-stars{
+             color:#aaa
+         }
+         .rating-container .filled-stars
+         {
+             position:absolute;
+             left:0;
+             top:0;
+             margin:auto;
+             color:#fde16d;
+             white-space:nowrap;
+             overflow:hidden;
+             -webkit-text-stroke:1px #777;
+             text-shadow:1px 1px #999
+         }
+             .rating-rtl
+             {
+                 float:right
+                 
+             }
+             .rating-animate .filled-stars
+             {
+                 transition:width .25s ease;
+                 -o-transition:width .25s ease;
+                 -moz-transition:width .25s ease;-webkit-transition:width .25s ease
+             }
+             .rating-rtl .filled-stars
+             {left:auto;right:0;-moz-transform:matrix(-1,0,0,1,0,0) translate3d(0,0,0);-webkit-transform:matrix(-1,0,0,1,0,0) translate3d(0,0,0);-o-transform:matrix(-1,0,0,1,0,0) translate3d(0,0,0);
+             transform:matrix(-1,0,0,1,0,0) translate3d(0,0,0)}.rating-rtl.is-star 
+             .filled-stars{
+                 right:.06em
+                 
+             }
+             .rating-rtl.is-heart .empty-stars{
+                 margin-right:.07em
+                 
+             }
+             .rating-lg{
+                 font-size:3.91em
+                 
+             }
+             .rating-md{
+                 font-size:2.13em
+                 
+             }
+             .rating-sm{
+                 font-size:2.5em
+                 
+             }
+             .rating-xs{
+                 font-size:2em
+                 
+             }
+             .rating-xl{
+             font-size:4.89em
+                 
+             }
+             .rating-container .clear-rating{
+                 color:#aaa;
+                 cursor:not-allowed;
+                 display:inline-block;
+                 vertical-align:middle;
+                 font-size:60%;
+                 padding-right:5px
+                 
+             }
+             .clear-rating-active{
+                 cursor:pointer!important
+                 
+             }
+             .clear-rating-active:hover{
+                 color:#843534
+                 
+             }
+             .rating-container .caption{
+                 color:#999;
+                 display:inline-block;
+                 vertical-align:middle;
+                 font-size:60%;
+                 margin-top:-.6em;
+                 margin-left:5px;
+                 margin-right:0
+                 
+             }
+             .rating-rtl .caption{
+                 margin-right:5px;
+                 margin-left:0
+                 
+             }
+             @media print{.rating-container .clear-rating{
+                 display:none
+                 
+             }
+                 
+             }
+      
   </style>
   <title>KitapKurdu</title>
   <meta charset="utf-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
     integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -27,6 +223,10 @@
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -94,33 +294,152 @@
       </nav>
       <h2 class="mb-4">Kitap Bilgi Gösterme </h2>
       <div class="container">
-        <div id="demo" class="col-xs-12 col-lg-12 ">
+        <div v-for="name in nameOfBook" id="demo" class="col-xs-12 col-lg-12 ">
         <div class="row">         
-            <div class="col-xs-6 col-lg-3">     
-              <div v-for="name in nameOfBook">
-                <img v-bind:src="name.thumbnail" alt = "Generic placeholder thumbnail">
-              </div>           
+          <!-- bir ana sayfa col-lg-12 dir sayfayı 2 dive böldüm 4-8 diye image ve kategoriler 4 lük ksıımda yazılar 8 lik kısımda -->
+            <div class="col-xs-6 col-lg-4">     
+              <div >
+                <!-- kitabın resmi  -->
+                <img v-bind:src="name.volumeInfo.imageLinks.thumbnail" alt="Generic placeholder thumbnail" style="margin-bottom: 2%;">
+                </div>
+                <!-- puan kısmı tamamiyle bootstrapdan kopyaladım kodu -->
+                <div class="rating-block" style="margin-bottom: 2%;">
+                  <h5><b>Puan Veren Kişi Sayısı: </b></h5>
+                  <h4 class="bold padding-bottom-7">    {{ name.volumeInfo.ratingsCount }}</h4>
+                  <h5><b>Ortalama Kullanıcı Puanı</b></h5>
+                  <h4 class="bold padding-bottom-7">    {{ name.volumeInfo.averageRating }} <small>/ 5</small></h4>
+                  <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                </div>           
+<!-- 
+                googleda kitap için yazılan yorumları da ekledim aşağı kısımlar zaten buradakilerin aynısı sadece li ve ul lar var ki listeli gözüksün diye -->
+                <a v-bind:href=" name.accessInfo.webReaderLink " ><b>GoogleBooks Yorumları</b></a>               
       
-            </div>
-            <div class="col-xs-6 col-lg-9">
+            </div>            
+            <div class="col-xs-6 col-lg-8">
               <ul>
-                <li v-for="name in nameOfBook">
-                  {{ name.authors }}
+                <li >
+                  
+                  <div v-for="tags of name.volumeInfo.authors" style="margin-bottom:1%">
+                    <label ><b>Yazarlar:</b></label>
+                    {{ tags }}
+                  </div>             
                 </li>
-                <li v-for="name in nameOfBook">
-                  {{ name.publisher }}
+                <li >
+                  <label><b>Yayınevi:</b></label>
+                  {{ name.volumeInfo.publisher }}
                 </li>
-                <li v-for="name in nameOfBook">
-                  {{ name.publisheddate }}
+                <li  >
+                  <label><b>Yayın Tarihi:</b></label>
+                  {{ name.volumeInfo.publishedDate }}
                 </li>
-                <li v-for="name in nameOfBook">
-                  {{ name.title }}
+                <li  >
+                  <label><b>ISBN:</b></label>
+                  {{ name.volumeInfo.industryIdentifiers[1].identifier }}
                 </li>
-                <li v-for="name in nameOfBook">
-                  {{ name.description }}
+                <li >
+                  <label><b>Kitap Adı:</b></label>
+                  {{ name.volumeInfo.title }}
                 </li>
+                <li >
+                  <label><b>Kitap Konusu:</b></label>
+                  <p v-html=" name.volumeInfo.description "></p>
+                </li>
+                <li >
+                  <label><b>Sayfa Sayısı:</b></label>
+                  {{ name.volumeInfo.pageCount }}
+                  </li>
+                        
               </ul>
           
+            </div>
+            <div class="col-lg-12">
+              <label style="margin-top:1%"><b>Kategoriler:</b></label>                
+              <div v-for="tags of name.volumeInfo.categories" class="some-class">
+                <span class="label label-info">{{ tags }}</span>
+              </div>
+            </div>
+            <div class="col-lg-12" style="margin-top: 1%;">  
+              <div class="row bootstrap snippets">
+                <div class="col-md-6 col-sm-12 col-lg-12">
+                    <div class="comment-wrapper">
+                        <div class="panel panel-info">
+                          <div class="panel-heading">
+                            Yorumlar
+                          </div>
+                            <div class="panel-body  col-lg-12">
+                                <textarea class="form-control" placeholder="Yorum yaz..." rows="3"></textarea>
+                                <br>
+                                <button type="button" class="btn btn-info pull-right">Yorum Ekle</button>
+                                <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2">
+                                <div class="clearfix"></div>
+                                <hr>
+                                <ul class="media-list">
+                                    <li class="media">
+                                        <a href="#" class="pull-left">
+                                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                        </a>
+                                        <div class="media-body">
+                                            <span class="text-muted pull-right">
+                                                <small class="text-muted">30 min ago</small>
+                                            </span>
+                                            <strong class="text-success">@MartinoMont</strong>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <a href="#" class="pull-left">
+                                            <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
+                                        </a>
+                                        <div class="media-body">
+                                            <span class="text-muted pull-right">
+                                                <small class="text-muted">30 min ago</small>
+                                            </span>
+                                            <strong class="text-success">@LaurenceCorreil</strong>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing elit.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <a href="#" class="pull-left">
+                                            <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
+                                        </a>
+                                        <div class="media-body">
+                                            <span class="text-muted pull-right">
+                                                <small class="text-muted">30 min ago</small>
+                                            </span>
+                                            <strong class="text-success">@JohnNida</strong>
+                                            <p>
+                                                Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+            
+                </div>
+            </div>             
+              
             </div>
           </div>
         </div>
@@ -136,6 +455,7 @@
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/star.js"></script>
 </body>
 
 </html>

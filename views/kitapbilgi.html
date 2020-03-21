@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <style>
+    .form-control-borderless {
+      border: none;
+    }
+
+    .form-control-borderless:hover,
+    .form-control-borderless:active,
+    .form-control-borderless:focus {
+      border: none;
+      outline: none;
+      box-shadow: none;
+    }
+  </style>
+  <title>KitapKurdu</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+    integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+      <div class="p-4 pt-5">
+        <a href="mainpage.html" class="img logo rounded-circle mb-5"
+          style="background-image: url(images/kitapkurdu.jpg);"></a>
+        <ul class="list-unstyled components mb-5">
+          <li>
+            <a href="#">Kitap Listeleri</a>
+          </li>
+          <li>
+            <a href="#">Favori Kitaplarım</a>
+          </li>
+          <li>
+            <a href="kitapara.html">Kitap Ara</a>
+          </li>
+        </ul>
+
+        <div class="footer">
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> <br>
+            Tüm Hakları Saklıdır.</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+          <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Toggle Menu</span>
+          </button>
+          <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Ana Sayfa</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Hakkımızda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">İletişim</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <h2 class="mb-4">Kitap Bilgi Gösterme </h2>
+      <div class="container">
+        <div id="demo" class="col-xs-12 col-lg-12 ">
+        <div class="row">         
+            <div class="col-xs-6 col-lg-3">     
+              <div v-for="name in nameOfBook">
+                <img v-bind:src="name.thumbnail" alt = "Generic placeholder thumbnail">
+              </div>           
+      
+            </div>
+            <div class="col-xs-6 col-lg-9">
+              <ul>
+                <li v-for="name in nameOfBook">
+                  {{ name.authors }}
+                </li>
+                <li v-for="name in nameOfBook">
+                  {{ name.publisher }}
+                </li>
+                <li v-for="name in nameOfBook">
+                  {{ name.publisheddate }}
+                </li>
+                <li v-for="name in nameOfBook">
+                  {{ name.title }}
+                </li>
+                <li v-for="name in nameOfBook">
+                  {{ name.description }}
+                </li>
+              </ul>
+          
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+    </div>
+    <script src="js/app.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

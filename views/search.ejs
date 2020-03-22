@@ -104,6 +104,7 @@
                             <!--end of col-->
                             <div class="col">
                                 <input 
+                                    v-on:keyup="enter" 
                                     v-model="searchText"
                                     class="form-control form-control-lg form-control-borderless" 
                                     type="search"
@@ -112,7 +113,7 @@
                             </div>
                             <!--end of col-->
                             <div class="col-auto">
-                                <button class="btn btn-lg btn-success" v-on:click="searchBooks" id="btn1">Ara</button> 
+                                <button id="searchButton" class="btn btn-lg btn-success" v-on:click="searchBooks"  id="btn1">Ara</button> 
                             </div>
                             <!--end of col-->
                             

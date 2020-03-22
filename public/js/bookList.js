@@ -60,6 +60,12 @@ var app = new Vue({
     next: function(){
       this.pageIndex++;
       this.searchBooks()
+    },
+    enter: function(event){ 
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("searchButton").click();
+      } 
     }
   } //methods: {}
 }); 

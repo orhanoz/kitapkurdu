@@ -77,16 +77,16 @@ const data = {
   ]
 }
 
-  new Vue({
-    el: '#demo',
-    data() {
-      return {
-        data: data.data
-      }
-    },
-    computed: {
-      nameOfBook() {
-        return this.data.map(dataSet => dataSet[0])
-      }
+new Vue({
+  el: '#demo',
+  data() {
+    return {
+      data: data.data
     }
-  })
+  },
+  computed: {
+    nameOfBook() {
+      return this.data.map(dataSet => dataSet[0])
+    }
+  }
+});

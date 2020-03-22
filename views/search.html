@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
 
     <style>
@@ -23,13 +22,15 @@
         integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="js/axios.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <div class="wrapper d-flex align-items-stretch">
+    <div  class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
             <div class="p-4 pt-5">
                 <a href="mainpage.html" class="img logo rounded-circle mb-5"
@@ -42,7 +43,7 @@
                         <a href="#">Favori Kitaplarım</a>
                     </li>
                     <li>
-                        <a href="kitapara.html">Kitap Ara</a>
+                        <a href="search.html">Kitap Ara</a>
                     </li>
                 </ul>
 
@@ -91,7 +92,7 @@
                 </div>
             </nav>
             <h2 class="mb-4">Kitap Kurdu Ekleme / Arama </h2>
-            <div class="container">
+            <div id="app"  class="container">
                 <br />
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-10 col-lg-12">
@@ -102,25 +103,35 @@
                             </div>
                             <!--end of col-->
                             <div class="col">
-                                <input class="form-control form-control-lg form-control-borderless" type="search"
-                                    placeholder="ISBN Girin">
+                                <input 
+                                    v-model="searchText"
+                                    class="form-control form-control-lg form-control-borderless" 
+                                    type="search"
+                                    placeholder="ISBN Girin"
+                                    value="">
                             </div>
                             <!--end of col-->
                             <div class="col-auto">
-                                <button class="btn btn-lg btn-success" id="btn1">Ara</button>
-
+                                <button class="btn btn-lg btn-success" v-on:click="searchBooks" id="btn1">Ara</button> 
                             </div>
                             <!--end of col-->
                             
-                        <iframe id="kitapListele" style="visibility: collapse;width: 100%;height: 100vh;margin-top: 1%;">
-
-
-                        </iframe>
+                            
 
                         </div>
 
                     </div>
                     <!--end of col-->
+
+                    <div id="searchResult" class="container">
+
+                        <!--end of col--> 
+                        <book  v-for="(book,i) in books" :key="i" :book="book"/> 
+                     </div>
+                     
+                    </div class="paginator">
+                        <button @click="previous"><< previous </button>   |   <span>Page: {{ pageIndex }}</span>   |   <button @click="next"> next >></button>
+                    </div>
                 </div>
             </div>
 
@@ -128,31 +139,8 @@
     </div>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#btn1').click(function (e) {
-                e.preventDefault();
-                $.getJSON(
-                    "https://www.googleapis.com/books/v1/volumes?q=k%C3%BCc%C3%BCk+a%C4%9Fa&startIndex=0",
-                    function (data) {
-                        var text = `Kitabın adı: ${data.items[0].volumeInfo.title}
-              Kitabın yazarı: ${data.items[0].volumeInfo.authors}`;
-
-                        //Şimdilk öylesine bir if jsondata geldi mi gelmedi mi diye
-                        if (text != "") {
-                            var iframeDiv = document.getElementById('kitapListele');
-                            iframeDiv.style.visibility = "visible";
-                            //ahmetin yaptığı kitaplistele sayfası açılır
-                            iframeDiv.src = ".....";
-
-                        }
-                    }
-                );
-            });
-        });
-
-    </script>
+    <script src="js/main.js"></script> 
+    <script src="js/bookList.js"></script>  
 
 </body>
 

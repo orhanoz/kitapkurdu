@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>KitapKurdu foreach iterate books</title>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="./App.js"></script>
+  </head>
+  <body bgcolor="#303030">
+    <h1 style="color: rgb(216, 68, 68);">kitaplar</h1>
+
+    <div id="app">
+      <ul>
+        <li style="list-style-type:none;" v-for="book in books">
+          <div
+            class="row"
+            style="height:175px;border:thin solid rgb(133, 111, 111); 
+          margin-left: 7px; margin-right: 32px; margin-bottom: 22px; padding: 1em;"
+          >
+            <div class="col-sm-1">
+              <img
+                v-bind:src="book.smallthumbnail"
+                alt="Generic placeholder thumbnail"
+                style="height:175px;"
+              />
+            </div>
+            <div class="col-sm-5">
+              {{book.description.substring(0,220)+".."}}
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

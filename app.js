@@ -20,9 +20,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/login', require('./routes/login'));
+app.use('/register', require('./routes/login'));
+app.use('/forgot-password', require('./routes/forgot-password'));
 app.use('/isbn', require('./routes/isbn'));
 app.use('/search', require('./routes/search'));
-app.use('/forgot-password', require('./routes/forgot-password'));
 app.use('/book-info', require('./routes/book-info'));
 
 // catch 404 and forward to error handler

@@ -23,6 +23,7 @@ app.use('/login', require('./routes/login'));
 app.use('/isbn', require('./routes/isbn'));
 app.use('/search', require('./routes/search'));
 app.use('/forgot-password', require('./routes/forgot-password'));
+app.use('/book-info', require('./routes/book-info'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

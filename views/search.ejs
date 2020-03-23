@@ -125,13 +125,15 @@
                     <!--end of col-->
 
                     <!-- RESULT LIST -->
-                    <div id="searchResult" class="container">
+                    <div id="searchResult" class="container" style="padding-left: 120px;">
                         <book  v-for="(book,i) in books" :key="i" :book="book"/>
                      </div>
 
                     <!-- PAGINATION -->
-                    </div class="paginator">
-                        <button @click="previous"><< previous </button>   |   <span>Page: {{ pageIndex }}</span>   |   <button @click="next"> next >></button>
+                    </div class="pagination">
+                        <div class="paginator" style="padding-top: 40px">
+                            <button @click="previous" style="padding-right: 20px;"> << previous </button><span style="padding-left: 20px;padding-right: 20px;">Page: {{ pageIndex }}</span><button @click="next" style="padding-left: 20px;" > next >></button>
+                        </div>
                     </div>
                     
                 </div>

@@ -8289,6 +8289,8 @@ a[data-toggle="collapse"] {
 
 .paginator {
   height: 100%;
+  width: 80%;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8319,5 +8321,5 @@ a[data-toggle="collapse"] {
   color: #1abc9c !important;
 }
 .active>a {
-color: #1abc9c !important;;
+  color: #1abc9c !important;;
 }

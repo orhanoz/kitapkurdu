@@ -10,7 +10,7 @@ Vue.component('book', {
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">{{book.volumeInfo.title}}</h5>
-                        <p class="card-text"> {{book.volumeInfo.description}} </p>
+                        <p class="card-text" style="max-width:500ch"> {{book.volumeInfo.description}} </p>
                     </div>
                 </div>
             </div> 

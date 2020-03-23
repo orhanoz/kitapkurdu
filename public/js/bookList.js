@@ -1,11 +1,11 @@
 
 Vue.component('book', {
   template: `
-     <div class="row" >
+     <div class="row">
         <div class="card col-md-10">
             <div class="row no-gutters" style="margin-bottom: 2%;border:pink;border-style: groove;">
                 <div class="col-md-2">
-                    <img :src="book.volumeInfo.imageLinks.smallThumbnail" alt="resim yuklenemedi" style="margin: 2%" />
+                    <img v-if="book.volumeInfo.imageLinks" :src="book.volumeInfo.imageLinks.smallThumbnail" alt="resim yuklenemedi" style="margin: 2%" />
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -41,10 +41,11 @@ var app = new Vue({
       }
     },
     searchBooks: function() { 
+        this.pageIndex = this.pageIndex == 0 ? 1 : this.pageIndex
         var searchTextFormatted = this.searchText.replace(" ", "+")  
         var self = this
         axios
-          .get(`https://www.googleapis.com/books/v1/volumes?q=${searchTextFormatted}&startIndex=${this.pageIndex}`)
+          .get(`https://www.googleapis.com/books/v1/volumes?q=${searchTextFormatted}&startIndex=${this.pageIndex - 1}`)
           .then(function(response){
               self.books = response.data.items 
               console.log(response)
@@ -54,7 +55,7 @@ var app = new Vue({
           });  
     },
     previous: function(){ 
-      if (this.pageIndex != 0) { this.pageIndex--; } 
+      if (this.pageIndex > 1) { this.pageIndex--; } 
       this.searchBooks()
     },
     next: function(){

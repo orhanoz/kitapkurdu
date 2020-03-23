@@ -124,15 +124,16 @@
                     </div>
                     <!--end of col-->
 
+                    <!-- RESULT LIST -->
                     <div id="searchResult" class="container">
-
-                        <!--end of col--> 
-                        <book  v-for="(book,i) in books" :key="i" :book="book"/> 
+                        <book  v-for="(book,i) in books" :key="i" :book="book"/>
                      </div>
-                     
+
+                    <!-- PAGINATION -->
                     </div class="paginator">
                         <button @click="previous"><< previous </button>   |   <span>Page: {{ pageIndex }}</span>   |   <button @click="next"> next >></button>
                     </div>
+                    
                 </div>
             </div>
 

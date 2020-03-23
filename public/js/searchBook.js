@@ -74,8 +74,8 @@ const data = {
         }
       },
     ]
-  ]
-}
+  ] // "data" : []
+} // const = data
 
 new Vue({
   el: '#demo',

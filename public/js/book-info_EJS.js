@@ -2,16 +2,19 @@ Vue.component('book-detail', {
 
   template: `
   <div class="col-xs-12 col-lg-12 ">
-        <div class="row" v-if="book.volumeInfo">         
+        <div class="row" v-if="name.volumeInfo">         
+          <!-- bir ana sayfa col-lg-12 dir sayfayı 2 dive böldüm 4-8 diye image ve kategoriler 4 lük ksıımda yazılar 8 lik kısımda -->
             <div class="col-xs-6 col-lg-4">     
               <div>
-                <img v-if="book.volumeInfo.imageLinks" v-bind:src="book.volumeInfo.imageLinks.thumbnail" alt="Generic placeholder thumbnail" style="margin-bottom: 2%;">
+                <!-- kitabın resmi  -->
+                <img v-if="name.volumeInfo.imageLinks" v-bind:src="name.volumeInfo.imageLinks.thumbnail" alt="Generic placeholder thumbnail" style="margin-bottom: 2%;">
                 </div>
+                <!-- puan kısmı tamamiyle bootstrapdan kopyaladım kodu -->
                 <div class="rating-block" style="margin-bottom: 2%;">
                   <h5><b>Puan Veren Kişi Sayısı: </b></h5>
-                  <h4 class="bold padding-bottom-7">    {{ book.volumeInfo.ratingsCount }}</h4>
+                  <h4 class="bold padding-bottom-7">    {{ name.volumeInfo.ratingsCount }}</h4>
                   <h5><b>Ortalama Kullanıcı Puanı</b></h5>
-                  <h4 class="bold padding-bottom-7">    {{ book.volumeInfo.averageRating }} <small>/ 5</small></h4>
+                  <h4 class="bold padding-bottom-7">    {{ name.volumeInfo.averageRating }} <small>/ 5</small></h4>
                   <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                   </button>
@@ -28,41 +31,43 @@ Vue.component('book-detail', {
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                   </button>
                 </div>           
-                <a v-bind:href=" book.accessInfo.webReaderLink " ><b>GoogleBooks Yorumları</b></a>               
+<!-- 
+                googleda kitap için yazılan yorumları da ekledim aşağı kısımlar zaten buradakilerin aynısı sadece li ve ul lar var ki listeli gözüksün diye -->
+                <a v-bind:href=" name.accessInfo.webReaderLink " ><b>GoogleBooks Yorumları</b></a>               
       
             </div>            
             <div class="col-xs-6 col-lg-8">
               <ul>
                 <li >
                   
-                  <div v-for="tags of book.volumeInfo.authors" style="margin-bottom:1%">
+                  <div v-for="tags of name.volumeInfo.authors" style="margin-bottom:1%">
                     <label ><b>Yazarlar:</b></label>
                     {{ tags }}
                   </div>             
                 </li>
                 <li >
                   <label><b>Yayınevi:</b></label>
-                  {{ book.volumeInfo.publisher }}
+                  {{ name.volumeInfo.publisher }}
                 </li>
                 <li  >
                   <label><b>Yayın Tarihi:</b></label>
-                  {{ book.volumeInfo.publishedDate }}
+                  {{ name.volumeInfo.publishedDate }}
                 </li>
                 <li  >
                   <label><b>ISBN:</b></label>
-                  {{ book.volumeInfo.industryIdentifiers[1].identifier }}
+                  {{ name.volumeInfo.industryIdentifiers[1].identifier }}
                 </li>
                 <li >
                   <label><b>Kitap Adı:</b></label>
-                  {{ book.volumeInfo.title }}
+                  {{ name.volumeInfo.title }}
                 </li>
                 <li >
                   <label><b>Kitap Konusu:</b></label>
-                  <p v-html=" book.volumeInfo.description "></p>
+                  <p v-html=" name.volumeInfo.description "></p>
                 </li>
                 <li >
                   <label><b>Sayfa Sayısı:</b></label>
-                  {{ book.volumeInfo.pageCount }}
+                  {{ name.volumeInfo.pageCount }}
                   </li>
                         
               </ul>
@@ -70,7 +75,7 @@ Vue.component('book-detail', {
             </div>
             <div class="col-lg-12">
               <label style="margin-top:1%"><b>Kategoriler:</b></label>                
-              <div v-for="tags of book.volumeInfo.categories" class="some-class">
+              <div v-for="tags of name.volumeInfo.categories" class="some-class">
                 <span class="label label-info">{{ tags }}</span>
               </div>
             </div>
@@ -86,7 +91,7 @@ Vue.component('book-detail', {
                                 <textarea class="form-control" placeholder="Yorum yaz..." rows="3"></textarea>
                                 <br>
                                 <button type="button" class="btn btn-info pull-right">Yorum Ekle</button>
-                                <input id="input-1" book="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2">
+                                <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2">
                                 <div class="clearfix"></div>
                                 <hr>
                                 <ul class="media-list">
@@ -147,7 +152,7 @@ Vue.component('book-detail', {
         </div>
   `,
   props: {
-    book: Object
+    name: Object
   },
   methods:{
 
@@ -157,7 +162,7 @@ Vue.component('book-detail', {
 new Vue({
   el: '#demo',
   data: {
-    books: [],
+      name: {}
   },
   mounted: function(){
     var self = this
@@ -165,12 +170,12 @@ new Vue({
       axios
         .get(selflink)
         .then(function(response){
-            self.books = [response.data]
-            console.log(self.books)
+            self.name = response.data
+            console.log(self.name)
         })
         .catch(error => {
             console.log(error.response)
         });
-    }
+      }
   }
 });

@@ -296,8 +296,8 @@ rating-loading{
         </div>
       </nav>
       <h2 class="mb-4">Kitap Bilgi Gösterme </h2>
-      <div  id="demo" class="container">
-        <book-detail v-for="(book,i) in books" :key="i" :book="book"/>
+      <div class="container" id="demo">
+        <book-detail v-if="name" :name="name" />
       </div> 
 
     </div>

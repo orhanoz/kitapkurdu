@@ -14,11 +14,20 @@ Vue.component('book', {
                     </div>
                 </div>
             </div> 
+            <div>
+                <button  v-bind:id="book.selfLink" class="btn btn-lg btn-primary" v-on:click="makeComment(book.selfLink)" style="float:right; width:100px; height:40px;">Yorum Yap</button> 
+            </div>
         </div> 
       </div>
   `,
   props: {
     book: Object
+  },
+  methods: {
+    makeComment:function(link){
+      //axios({ method: 'post', url: '/book-info', data: { selflink: link } }); 
+      window.location.href = '/book-info?q='+link
+    }
   }
 });
 
@@ -53,6 +62,9 @@ var app = new Vue({
           .catch(error => {
               console.log(error.response)
           });  
+    },
+    makeComment: function(id){
+      alert("ID: "+id)
     },
     previous: function(){ 
       if (this.pageIndex > 1) { this.pageIndex--; } 

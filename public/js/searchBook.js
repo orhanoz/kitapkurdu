@@ -1,92 +1,181 @@
-const data = {
-  "data": [
-    [
-      {
-        "kind": "books#volume",
-        "id": "Sm5AKLXKxHgC", "etag": "9dv/+nf2AW0",
-        "selfLink": "https://www.googleapis.com/books/v1/volumes/Sm5AKLXKxHgC",
-        "volumeInfo": {
-          "title": "Harry Potter and the Prisoner of Azkaban",
-          "authors": ["J.K. Rowling"], 
-          "publisher": "Pottermore Publishing",
-          "publishedDate": "2015-12-08",
-          "description": "\u003cp\u003e\u003ci\u003e'Welcome to the Knight Bus, emergency transport for the stranded witch or wizard. Just stick out your wand hand, step on board and we can take you anywhere you want to go.'\u003c/i\u003e\u003cbr\u003e\u003cbr\u003eWhen the Knight Bus crashes through the darkness and screeches to a halt in front of him, it's the start of another far from ordinary year at Hogwarts for Harry Potter. Sirius Black, escaped mass-murderer and follower of Lord Voldemort, is on the run - and they say he is coming after Harry. In his first ever Divination class, Professor Trelawney sees an omen of death in Harry's tea leaves... But perhaps most terrifying of all are the Dementors patrolling the school grounds, with their soul-sucking kiss...\u003c/p\u003e",
-          "industryIdentifiers": [
-            { 
-              "type": "ISBN_10",
-             "identifier": "1781100519" },
-              { "type": "ISBN_13", 
-              "identifier": "9781781100516" }
-          ],
-          "readingModes": {
-            "text": true,
-            "image": false
-          },
-          "pageCount": 448,
-          "printedPageCount": 469,
-          "printType": "BOOK",
-          "categories": [
-            "Fiction / Action & Adventure", "Fiction / Fantasy / Contemporary", "Juvenile Fiction / Action & Adventure / General",
-            "Juvenile Fiction / Fantasy & Magic", "Young Adult Fiction / Action & Adventure / General",
-            "Young Adult Fiction / Fantasy / Wizards & Witches", "Young Adult Fiction / School & Education / Boarding School & Prep School",
-            "Fiction / Fantasy / General", "Juvenile Fiction / School & Education"
-          ],
-          "averageRating": 4.5,
-          "ratingsCount": 2495,
-          "maturityRating": "NOT_MATURE",
-          "allowAnonLogging": true,
-          "contentVersion": "1.17.16.0.preview.2",
-          "panelizationSummary":
-           {
-            "containsEpubBubbles": false,
-            "containsImageBubbles": false
-          },
-          "imageLinks":
-          {
-            "smallThumbnail": "http://books.google.com/books/content?id=Sm5AKLXKxHgC&printsec=frontcover&img=1&zoom=5&imgtk=AFLRE72VnSPrh79JMOSpi5YMGJiAPuDLhwD9J1qu4NA1PTrFO8atEh5KGnmctMEeO3oBMPgqdr4zhiV4FlOjPHUR2dIcaU3vbV3ISgnt8Rr-GFT7hCMSb_g-ThO_Nx5XrAnPWuCbbXsK&source=gbs_api",
-            "thumbnail": "http://books.google.com/books/content?id=Sm5AKLXKxHgC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE706fG9Pu_T4HcnJhyhgCzoDQhhq-XjiPUYBZsSQNNPu7Li5sMl0Dy3e6jnx9zxual3nJC2-WkkyJJ_lhfQBcSbl5iGS07Br37y9-QeodI7wFEvF6dmKLz_9_KHZF9URYS67f8Ci&source=gbs_api"
-          },
-          "language": "en", "previewLink": "http://books.google.com.tr/books?id=Sm5AKLXKxHgC&hl=&source=gbs_api", "infoLink": "https://play.google.com/store/books/details?id=Sm5AKLXKxHgC&source=gbs_api", "canonicalVolumeLink": "https://play.google.com/store/books/details?id=Sm5AKLXKxHgC"
-        },
-        "layerInfo": {
-          "layers": [{
-            "layerId": "geo", "volumeAnnotationsVersion": "25"
-          }
-          ]
-        },
-        "saleInfo": {
-          "country": "TR", "saleability": "NOT_FOR_SALE", "isEbook": false
-        },
-        "accessInfo": {
-          "country": "TR",
-          "viewability": "NO_PAGES",
-          "embeddable": false,
-          "publicDomain": false,
-          "textToSpeechPermission": "ALLOWED"
-          , "epub": {
-            "isAvailable": true
-          },
-          "pdf": {
-            "isAvailable": true
-          },
-          "webReaderLink": "http://play.google.com/books/reader?id=Sm5AKLXKxHgC&hl=&printsec=frontcover&source=gbs_api",
-          "accessViewStatus": "NONE", "quoteSharingAllowed": false
-        }
-      },
-    ]
-  ] // "data" : []
-} // const = data
+Vue.component('book-detail', {
+
+  template: `
+  <div class="col-xs-12 col-lg-12 ">
+        <div class="row" v-if="name.volumeInfo">         
+          <!-- bir ana sayfa col-lg-12 dir sayfayı 2 dive böldüm 4-8 diye image ve kategoriler 4 lük ksıımda yazılar 8 lik kısımda -->
+            <div class="col-xs-6 col-lg-4">     
+              <div>
+                <!-- kitabın resmi  -->
+                <img v-if="name.volumeInfo.imageLinks" v-bind:src="name.volumeInfo.imageLinks.thumbnail" alt="Generic placeholder thumbnail" style="margin-bottom: 2%;">
+                </div>
+                <!-- puan kısmı tamamiyle bootstrapdan kopyaladım kodu -->
+                <div class="rating-block" style="margin-bottom: 2%;">
+                  <h5><b>Puan Veren Kişi Sayısı: </b></h5>
+                  <h4 class="bold padding-bottom-7">    {{ name.volumeInfo.ratingsCount }}</h4>
+                  <h5><b>Ortalama Kullanıcı Puanı</b></h5>
+                  <h4 class="bold padding-bottom-7">    {{ name.volumeInfo.averageRating }} <small>/ 5</small></h4>
+                  <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                </div>           
+<!-- 
+                googleda kitap için yazılan yorumları da ekledim aşağı kısımlar zaten buradakilerin aynısı sadece li ve ul lar var ki listeli gözüksün diye -->
+                <a v-bind:href=" name.accessInfo.webReaderLink " ><b>GoogleBooks Yorumları</b></a>               
+      
+            </div>            
+            <div class="col-xs-6 col-lg-8">
+              <ul>
+                <li >
+                  
+                  <div v-for="tags of name.volumeInfo.authors" style="margin-bottom:1%">
+                    <label ><b>Yazarlar:</b></label>
+                    {{ tags }}
+                  </div>             
+                </li>
+                <li >
+                  <label><b>Yayınevi:</b></label>
+                  {{ name.volumeInfo.publisher }}
+                </li>
+                <li  >
+                  <label><b>Yayın Tarihi:</b></label>
+                  {{ name.volumeInfo.publishedDate }}
+                </li>
+                <li  >
+                  <label><b>ISBN:</b></label>
+                  {{ name.volumeInfo.industryIdentifiers[1].identifier }}
+                </li>
+                <li >
+                  <label><b>Kitap Adı:</b></label>
+                  {{ name.volumeInfo.title }}
+                </li>
+                <li >
+                  <label><b>Kitap Konusu:</b></label>
+                  <p v-html=" name.volumeInfo.description "></p>
+                </li>
+                <li >
+                  <label><b>Sayfa Sayısı:</b></label>
+                  {{ name.volumeInfo.pageCount }}
+                  </li>
+                        
+              </ul>
+          
+            </div>
+            <div class="col-lg-12">
+              <label style="margin-top:1%"><b>Kategoriler:</b></label>                
+              <div v-for="tags of name.volumeInfo.categories" class="some-class">
+                <span class="label label-info">{{ tags }}</span>
+              </div>
+            </div>
+            <div class="col-lg-12" style="margin-top: 1%;">  
+              <div class="row bootstrap snippets">
+                <div class="col-md-6 col-sm-12 col-lg-12">
+                    <div class="comment-wrapper">
+                        <div class="panel panel-info">
+                          <div class="panel-heading">
+                            Yorumlar
+                          </div>
+                            <div class="panel-body  col-lg-12">
+                                <textarea class="form-control" placeholder="Yorum yaz..." rows="3"></textarea>
+                                <br>
+                                <button type="button" class="btn btn-info pull-right">Yorum Ekle</button>
+                                <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2">
+                                <div class="clearfix"></div>
+                                <hr>
+                                <ul class="media-list">
+                                    <li class="media">
+                                        <a href="#" class="pull-left">
+                                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                        </a>
+                                        <div class="media-body">
+                                            <span class="text-muted pull-right">
+                                                <small class="text-muted">30 min ago</small>
+                                            </span>
+                                            <strong class="text-success">@MartinoMont</strong>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <a href="#" class="pull-left">
+                                            <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
+                                        </a>
+                                        <div class="media-body">
+                                            <span class="text-muted pull-right">
+                                                <small class="text-muted">30 min ago</small>
+                                            </span>
+                                            <strong class="text-success">@LaurenceCorreil</strong>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing elit.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <a href="#" class="pull-left">
+                                            <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
+                                        </a>
+                                        <div class="media-body">
+                                            <span class="text-muted pull-right">
+                                                <small class="text-muted">30 min ago</small>
+                                            </span>
+                                            <strong class="text-success">@JohnNida</strong>
+                                            <p>
+                                                Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+            
+                </div>
+            </div>             
+              
+            </div>
+          </div>
+        </div>
+  `,
+  props: {
+    name: Object
+  },
+  methods:{
+
+  }
+});
 
 new Vue({
   el: '#demo',
-  data() {
-    return {
-      data: data.data
-    }
+  data: {
+      name: {}
   },
-  computed: {
-    nameOfBook() {
-      return this.data.map(dataSet => dataSet[0])
-    }
+  mounted: function(){
+    var self = this
+    if (selflink != "" && selflink != undefined && selflink != null) {
+      axios
+        .get(selflink)
+        .then(function(response){
+            self.name = response.data
+            console.log(self.name)
+        })
+        .catch(error => {
+            console.log(error.response)
+        });
+      }
   }
 });

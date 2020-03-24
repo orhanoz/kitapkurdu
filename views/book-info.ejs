@@ -296,19 +296,19 @@ rating-loading{
         </div>
       </nav>
       <h2 class="mb-4">Kitap Bilgi Gösterme </h2>
-      <div class="container" id="demo">
-        <book-detail v-if="name" :name="name" />
+      <div  id="demo" class="container">
+        <book-detail v-for="(book,i) in books" :key="i" :book="book"/>
       </div> 
 
     </div>
     </div>
     
-  <script src="js/searchBook.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/star.js"></script>
+  <script src="js/book-info_EJS.js"></script>
 </body>
 
 </html>

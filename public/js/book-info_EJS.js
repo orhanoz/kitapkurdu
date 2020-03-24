@@ -172,6 +172,8 @@ new Vue({
         .catch(error => {
             console.log(error.response)
         });
-      }
+    } else {
+      window.location = "/search"
+    }
   }
 });

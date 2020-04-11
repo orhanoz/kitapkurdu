@@ -21,24 +21,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', require('./routes/index'));
-app.use('/login', require('./routes/login'));
-app.use('/register', require('./routes/register'));
-app.use('/forgot-password', require('./routes/forgot-password'));
-app.use('/reset-password', require('./routes/reset-password'));
-app.use('/search', require('./routes/search'));
-app.use('/book-info', require('./routes/book-info'));
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
 
 app.use(session({
-  key: 'email',
+  key: 'user_sid',
   secret: 'somerandonstuffs',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {
       expires: 600000
   }
@@ -47,10 +35,19 @@ app.use(session({
 app.use((req, res, next) => {
   if (req.cookies.user_sid && !req.session.user) {
       res.clearCookie('user_sid');     
-      res.req.session = null; //deletes cookie!   
   }
   next();
 });
+
+
+app.use('/', require('./routes/index'));
+app.use('/login', require('./routes/login'));
+app.use('/logout', require('./routes/logout'));
+app.use('/register', require('./routes/register'));
+app.use('/forgot-password', require('./routes/forgot-password'));
+app.use('/reset-password', require('./routes/reset-password'));
+app.use('/search', require('./routes/search'));
+app.use('/book-info', require('./routes/book-info'));
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -63,8 +60,17 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+ 
+
+ 
+
 var sequelize = new Sequelize(databaseConfig.database, databaseConfig.username, databaseConfig.password, {
-  host: databaseConfig.hhostnameost,
+  host: databaseConfig.hostname,
   dialect: 'mysql',
   pool: {
       max: 5,
@@ -73,9 +79,10 @@ var sequelize = new Sequelize(databaseConfig.database, databaseConfig.username, 
   },
 });
 
-app.locals.sequelize = sequelize;
 
 var models = require('sequelize-import')(__dirname + '/models', sequelize);
 app.locals.models = models; 
+app.locals.sequelize = sequelize;
+
 
 module.exports = app;

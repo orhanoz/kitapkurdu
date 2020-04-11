@@ -1,4 +1,5 @@
 var request = require('ajax-request');
+
 var ejs = require('ejs');
 var path = require('path');
 var fs = require('fs');
@@ -108,5 +109,13 @@ module.exports = {
             }
         });
     },
+
+    checkSession(req, res, next) {
+        if (req.session && req.session.user && req.cookies.user_sid) {
+            res.redirect('/');
+        } else {
+            next();
+        }    
+    }
 
 }

@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var utils = require('../config/utils');
 
-/* GET users listing. */
+
+/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+    res.clearCookie('user_sid');
+    res.redirect('/');
+}); 
 
 module.exports = router;

@@ -23,7 +23,7 @@ body.my-login-page {
 }
 
 .my-login-page .card-wrapper {
-	width: 400px;
+	width: 550px;
 }
 
 .my-login-page .card {
@@ -57,6 +57,10 @@ body.my-login-page {
 	text-align: center;
 }
 
+.modal { 
+	background-color: #00000080 !important; 
+}
+
 @media screen and (max-width: 425px) {
 	.my-login-page .card-wrapper {
 		width: 90%;
@@ -73,3 +77,4 @@ body.my-login-page {
 		padding: 15px;
 	}
 }
+

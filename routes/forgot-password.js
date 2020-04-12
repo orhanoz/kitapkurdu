@@ -1,12 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var utils = require('./../config/utils');
+
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', utils.checkSession, function(req, res, next) {
     res.render('forgot-password', {page:'About Us', menuId:'about'});
 });
 
-/* GET users listing. */
+/* POST users listing. */
 router.post('/', function(req, res, next) {
     var models = req.app.locals.models; 
     let email = req.body.email.trim(); 
@@ -17,6 +19,10 @@ router.post('/', function(req, res, next) {
         }).then(function (users) {
             if (users.length != 0) {
                 //A user found!
+                var email = users[0].email;
+                var fullName = `${users[0].name} ${users[0].surname}`
+                var token = utils.encrypt(email)
+                utils.sendPasswordResetEmail(email, fullName, token)
                 res.redirect('/forgot-password?status=success');
             } else { 
                 res.redirect('/forgot-password?status=failed');
@@ -25,6 +31,12 @@ router.post('/', function(req, res, next) {
     } catch (error) {
         res.redirect('/forgot-password?status=failed');
     } 
+
+    // var encrypted = utils.encrypt(email)
+    // var decrypted = utils.decrypt(encrypted)
+    // console.log( "E: " + encrypted)
+    // console.log( "D: " + decrypted)
+
 
 });
 

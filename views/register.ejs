@@ -24,7 +24,7 @@
 								<!-- Name & Surname -->
 								<div class="container form-group">
 									<div class="row" style="margin-left: 0.25em;">
-										<div class="form-group" class="col" >
+										<div class="form-group" class="col">
 											<label for="name">Ad</label>
 											<input id="name" type="text" class="form-control" name="name" required autofocus />
 											<div class="invalid-feedback">
@@ -41,7 +41,7 @@
 									</div>
 								</div>
 
-								<div class="container form-group" style="padding-right: 6em; margin-left: 1.25em;">
+								<div class="container form-group" style="padding-right: 6em; margin-left: 1.25em; margin-top: -1em;">
 									<div class="row">
 										<label for="email">E-mail</label>
 										<input id="email" type="email" class="form-control" name="email" required autofocus>
@@ -51,7 +51,7 @@
 									</div>
 								</div>
 
-								<div class="form-group"  style="padding-right: 3.5em; margin-left: 1.25em; margin-top: 2em; margin-bottom: 1.5em;">
+								<div class="form-group"  style="padding-right: 3.5em; margin-left: 1.25em; margin-top: 1em; margin-bottom: 1.5em;">
 									<label for="about">Hakkında</label>
 									<textarea class="form-control" rows="3" name="about" required autofocus></textarea>
 									<div class="invalid-feedback">
@@ -61,24 +61,24 @@
 
 								<p style="height: 1px; background-color: #00000080; margin-right: 3.5em; margin-left: 1.25em; margin-top: 2em; margin-bottom: 1.5em;" />
 
-								<div class="form-group"  style="padding-right: 3.5em; margin-left: 1.25em; margin-top: 2em; margin-bottom: 1.5em;">
+								<div class="form-group"  style="padding-right: 3.5em; margin-left: 1.25em; margin-top: 1em; margin-bottom: 1.5em;">
 									<label for="password">Şifre</label>
-									<input id="password" type="password" class="form-control" name="password" required data-eye>
+									<input id="password" type="password" class="form-control" name="password" required>
 									<div class="invalid-feedback">
 										Lütfen şifrenizi kontrol edin!
 									</div>
 								</div>
   
-								<div class="form-group"  style="padding-right: 3.5em; margin-left: 1.25em; margin-top: 2em; margin-bottom: 1.5em;">
+								<div class="form-group"  style="padding-right: 3.5em; margin-left: 1.25em; margin-top: 1em; margin-bottom: 1.5em;">
 									<label for="password">Şifre Tekrar</label>
-									<input id="password" type="password" class="form-control" name="password_again" required data-eye>
+									<input id="password" type="password" class="form-control" name="password_again" required>
 									<div class="invalid-feedback">
 										Lütfen şifrenizi kontrol edin!
 									</div>
 								</div>
 
 								<div class="form-group m-0" style="padding-left: 1.5em; padding-right: 3em; padding-top: 1.5em; padding-bottom: 1.5em;">
-									<button type="submit" class="btn btn-primary btn-block" > Kayıt Ol </button>
+									<button id="registerBtn" type="submit" class="btn btn-block" style="background-color: #ffc107; color:#fff;" > Kayıt Ol </button>
 								</div>
 							</form>
 						</div>
@@ -103,7 +103,7 @@
 <script>
 $(document).ready(function(){
 	
-	$("#loginBtn").click(function(){
+	$("#registerBtn").click(function(){
 		$("#loadingModal").modal({backdrop:false });
 		setTimeout(function(){$("#loadingModal").modal('hide'); }, 2000);
 	});

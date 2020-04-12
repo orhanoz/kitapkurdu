@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <style>
+        .form-control-borderless {
+            border: none;
+        }
+
+        .form-control-borderless:hover,
+        .form-control-borderless:active,
+        .form-control-borderless:focus {
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
+    <title>KitapKurdu</title>
+    <meta charset="utf-8">
+    <meta name="description" content="<%= link %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+        integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="js/axios.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+        var selflink = document.querySelector('meta[name="description"]').content;
+    </script>
+
+</head>
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="p-4 pt-5">
+                <a href="mainpage.html" class="img logo rounded-circle mb-5"
+                    style="background-image: url(img/kitapkurdu.jpg);"></a>
+                <ul class="list-unstyled components mb-5">
+                    <li>
+                        <a href="#">Kitap Listeleri</a>
+                    </li>
+                    <li>
+                        <a href="#">Favori Kitaplarım</a>
+                    </li>
+                    <li>
+                        <a href="/search">Kitap Ara</a>
+                    </li>
+                </ul>
+
+                <div class="footer">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> <br>
+                        Tüm Hakları Saklıdır.</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle Menu</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Ana Sayfa</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Hakkımızda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">İletişim</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <h2 class="mb-4">Kişi Bilgileri </h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-12 ">
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-2">
+                                <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive"
+                                    height="150" width="150"  style="margin-bottom: 10px;"/>
+                            </div>
+                            <div class="col-sm-6 col-md-10">
+                                <h5>Ad Soyad</h5>
+                                <h5>Mail</h5>
+                                <h5>Password</h5>
+                            </div>
+
+                        </div>                     
+                    </div>
+                    <div name="NavBar" style="margin-top: 10;" class="col-xs-12 col-sm-6 col-md-12 ">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist" >
+                            <li class="nav-item">
+                              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#favorilerim" role="tab" aria-controls="home" aria-selected="true">Favorilerim</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#yorumlarım" role="tab" aria-controls="profile" aria-selected="false">Yorumlarım</a>
+                            </li>
+                          </ul>
+                          <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="favorilerim" role="tabpanel" aria-labelledby="home-tab">...</div>
+                            <div class="tab-pane fade" id="yorumlarım" role="tabpanel" aria-labelledby="profile-tab">...</div>
+         
+                          </div>
+                       </div>
+                   
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/star.js"></script>
+    <script src="js/book-info_EJS.js"></script>
+</body>
+
+</html>

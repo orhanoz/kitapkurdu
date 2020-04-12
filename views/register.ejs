@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="author" content="Kodinger">
+	<meta name="author">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>My Login Page &mdash; Bootstrap 4 Login Page Snippet</title>
+	<title>Kayıt Ol</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/my-login.css">
 </head>
@@ -18,49 +18,67 @@
 					</div>
 					<div class="card fat">
 						<div class="card-body">
-							<h4 class="card-title">Register</h4>
-							<form method="POST" class="my-login-validation" novalidate="">
-								<div class="form-group">
-									<label for="name">Name</label>
-									<input id="name" type="text" class="form-control" name="name" required autofocus>
-									<div class="invalid-feedback">
-										What's your name?
-									</div>
-								</div>
+							<h4 class="card-title">Kayıt Ol</h4>
+							<form method="POST" class="my-login-validation" novalidate="" action="/register">
 
-								<div class="form-group">
-									<label for="email">E-Mail Address</label>
-									<input id="email" type="email" class="form-control" name="email" required>
-									<div class="invalid-feedback">
-										Your email is invalid
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label for="password">Password</label>
-									<input id="password" type="password" class="form-control" name="password" required data-eye>
-									<div class="invalid-feedback">
-										Password is required
-									</div>
-								</div>
-
-								<div class="form-group">
-									<div class="custom-checkbox custom-control">
-										<input type="checkbox" name="agree" id="agree" class="custom-control-input" required="">
-										<label for="agree" class="custom-control-label">I agree to the <a href="#">Terms and Conditions</a></label>
-										<div class="invalid-feedback">
-											You must agree with our Terms and Conditions
+								<!-- Name & Surname -->
+								<div class="container form-group">
+									<div class="row" style="margin-left: 0.25em;">
+										<div class="form-group" class="col" >
+											<label for="name">Ad</label>
+											<input id="name" type="text" class="form-control" name="name" required autofocus />
+											<div class="invalid-feedback">
+												Lütfen adınızı girin!
+											</div>
+										</div>
+										<div class="form-group" class="col" style="margin-left: 2em;">
+											<label for="name">Soyad</label>
+											<input id="name" type="text" class="form-control" name="surname" required autofocus />
+											<div class="invalid-feedback">
+												Lütfen soyadınızı girin!
+											</div>
 										</div>
 									</div>
 								</div>
 
-								<div class="form-group m-0">
-									<button type="submit" class="btn btn-primary btn-block">
-										Register
-									</button>
+								<div class="container form-group" style="padding-right: 6em; margin-left: 1.25em;">
+									<div class="row">
+										<label for="email">E-mail</label>
+										<input id="email" type="email" class="form-control" name="email" required autofocus>
+										<div class="invalid-feedback">
+											Lütfen email adresinizi kontrol edin!
+										</div>
+									</div>
 								</div>
-								<div class="mt-4 text-center">
-									Already have an account? <a href="index.html">Login</a>
+
+								<div class="form-group"  style="padding-right: 3.5em; margin-left: 1.25em; margin-top: 2em; margin-bottom: 1.5em;">
+									<label for="about">Hakkında</label>
+									<textarea class="form-control" rows="3" name="about" required autofocus></textarea>
+									<div class="invalid-feedback">
+										Lütfen bize biraz kendinizden bahsedin!
+									</div>
+								  </div>
+
+								<p style="height: 1px; background-color: #00000080; margin-right: 3.5em; margin-left: 1.25em; margin-top: 2em; margin-bottom: 1.5em;" />
+
+								<div class="form-group"  style="padding-right: 3.5em; margin-left: 1.25em; margin-top: 2em; margin-bottom: 1.5em;">
+									<label for="password">Şifre</label>
+									<input id="password" type="password" class="form-control" name="password" required data-eye>
+									<div class="invalid-feedback">
+										Lütfen şifrenizi kontrol edin!
+									</div>
+								</div>
+  
+								<div class="form-group"  style="padding-right: 3.5em; margin-left: 1.25em; margin-top: 2em; margin-bottom: 1.5em;">
+									<label for="password">Şifre Tekrar</label>
+									<input id="password" type="password" class="form-control" name="password_again" required data-eye>
+									<div class="invalid-feedback">
+										Lütfen şifrenizi kontrol edin!
+									</div>
+								</div>
+
+								<div class="form-group m-0" style="padding-left: 1.5em; padding-right: 3em; padding-top: 1.5em; padding-bottom: 1.5em;">
+									<button type="submit" class="btn btn-primary btn-block" > Kayıt Ol </button>
 								</div>
 							</form>
 						</div>
@@ -75,6 +93,47 @@
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 	<script src="js/my-login.js"></script>
+
 </body>
+
+<% include partials/loading %>  
+
+<script>
+$(document).ready(function(){
+	
+	$("#loginBtn").click(function(){
+		$("#loadingModal").modal({backdrop:false });
+		setTimeout(function(){$("#loadingModal").modal('hide'); }, 2000);
+	});
+
+	var queryDict = {}
+	location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
+	if (queryDict.hasOwnProperty('success') && queryDict.hasOwnProperty('code')) {
+		switch(parseInt(queryDict.code)){
+			case 1: //Name
+				bootbox.alert({ size:"small", message: "Lütfen adınızı kontrol edin!"})
+				break;
+			case 2: //Surname
+				bootbox.alert({ size:"small", message: "Lütfen soyadınızı kontrol edin!"})
+				break;
+			case 3: //Email
+				bootbox.alert({ size:"small", message: "Lütfen email adresinizi kontrol edin!"})
+				break;
+			case 4: //About
+				bootbox.alert({ size:"small", message: "Lütfen kendiniz hakkında girdiğiniz bilgileri kontrol edin!"})
+				break;
+			case 5: //Password
+				bootbox.alert({ size:"small", message: "Lütfen girdiğiniz şifreyi kontrol edin!"})
+				break;
+			case 6: //Succeeded
+				bootbox.alert({ size:"small", message: "Kayıt işleminiz başarıyla gerçekleşti!", callback: function(){ window.location = "/" }})
+				break;
+		}
+	} 
+
+});
+</script>
+
 </html>

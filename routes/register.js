@@ -33,7 +33,7 @@ router.post('/', utils.checkSession, function(req, res, next) {
             where: { email: email }
         }).then(function (users) {
             if (users.length != 0) { 
-                res.redirect('/success=false&code=6');
+                res.redirect('/register?success=false&code=6');
             } else { 
                 var new_user = { name: name, surname: surname, email: email, about: about, password: pass } 
                 models.user.build(new_user)

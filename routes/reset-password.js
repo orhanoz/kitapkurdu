@@ -28,16 +28,20 @@ router.post('/', function(req, res, next) {
                 where: { email: email }
             }).then(function (users) {
                 if (users.length != 0) {
-                    models.user.update(
-                        { password: pass },
-                        { where: { email: email } }
-                    ).then(function (result) {
-                        if(result[0] == 1) {
-                            res.redirect("/reset-password?success=true&code=4") //4 - succeeded
-                        } else {
-                            res.redirect("/reset-password?success=false&code=3") //3 - operation failed
-                        }
-                    });
+                    if (users[0].password == pass) {
+                        res.redirect("/reset-password?success=false&code=4") //4 - old & new same
+                    } else {
+                        models.user.update(
+                            { password: pass },
+                            { where: { email: email } }
+                        ).then(function (result) {
+                            if(result[0] == 1) {
+                                res.redirect("/reset-password?success=true&code=5") //5 - succeeded
+                            } else {
+                                res.redirect("/reset-password?success=false&code=3") //3 - operation failed
+                            }
+                        });
+                    }
                 } else { 
                     res.redirect("/reset-password?success=false&code=2") //2 - user not found
                 }

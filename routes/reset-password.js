@@ -13,14 +13,16 @@ router.post('/', function(req, res, next) {
     var token = req.query.token;
     let pass = req.body.password.trim();
     let pass_again = req.body.password_again.trim(); 
-    var email = utils.decrypt(token);
+    var email = token ? utils.decrypt(token) : '';
 
     //TODO: 
     // 1 - check pass & pass_again
     // 2 - find user with email 
     // 3 - update user password & redirect to dashboard!
 
-    if(!pass || !pass_again || pass != pass_again) { 
+    if (!token && !email) {
+        res.redirect("/reset-password")
+    } else if(!pass || !pass_again || pass != pass_again) { 
         res.redirect("/reset-password?success=false&code=1") //1 - check password
     } else {
         try {

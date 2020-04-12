@@ -42,6 +42,7 @@ app.use((req, res, next) => {
 
 app.use('/', require('./routes/index'));
 app.use('/login', require('./routes/login'));
+app.use('/profile', require('./routes/profile'));
 app.use('/logout', require('./routes/logout'));
 app.use('/register', require('./routes/register'));
 app.use('/forgot-password', require('./routes/forgot-password'));

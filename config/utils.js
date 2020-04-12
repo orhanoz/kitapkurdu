@@ -8,7 +8,7 @@ var crypto = require('crypto');
 
 module.exports = {
 
-    domain: "https://kitapkurduu.herokuapp.com", //"http://localhost:3000"
+    domain: "http://localhost:3000",  //"https://kitapkurduu.herokuapp.com",
 
     api_key: "",
 

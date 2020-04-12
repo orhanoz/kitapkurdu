@@ -128,6 +128,9 @@ $(document).ready(function(){
 				bootbox.alert({ size:"small", message: "Lütfen girdiğiniz şifreyi kontrol edin!"})
 				break;
 			case 6: //Succeeded
+				bootbox.alert({ size:"small", message: "Sistem kayıtlı bir kullanıcı var! Lütfen email adresinizi kontrol edin!", callback: function(){ window.location = "/" }})
+				break;
+			case 7: //Succeeded
 				bootbox.alert({ size:"small", message: "Kayıt işleminiz başarıyla gerçekleşti!", callback: function(){ window.location = "/" }})
 				break;
 		}

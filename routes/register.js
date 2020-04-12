@@ -29,14 +29,22 @@ router.post('/', utils.checkSession, function(req, res, next) {
     } else if(!pass || !pass_again || pass != pass_again) {
         res.redirect("/register?success=false&code=5")
     } else {
-        var new_user = { name: name, surname: surname, email: email, about: about, password: pass } 
-        models.user.build(new_user)
-                    .save()
-                    .then(function (data) {
-                        console.log(data)
-                        req.session.user = data.dataValues
-                        res.redirect("/register?success=true&code=6")
-                    });
+        models.user.findAll({
+            where: { email: email }
+        }).then(function (users) {
+            if (users.length != 0) { 
+                res.redirect('/success=false&code=6');
+            } else { 
+                var new_user = { name: name, surname: surname, email: email, about: about, password: pass } 
+                models.user.build(new_user)
+                            .save()
+                            .then(function (data) {
+                                console.log(data)
+                                req.session.user = data.dataValues
+                                res.redirect("/register?success=true&code=7")
+                            });
+            }
+        });
     }
 
 });

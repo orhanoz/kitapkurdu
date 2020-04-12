@@ -40,7 +40,7 @@ module.exports = {
         var message = {
             from: 'KitapKurdu <kitapkurduuuuuu@gmail.com>',
             to: email,
-            subject: 'KitapKurdu - Üyelik Aktivasyonu',
+            subject: 'KitapKurdu - Şifremi Unuttum',
             html: rendered
         };
 

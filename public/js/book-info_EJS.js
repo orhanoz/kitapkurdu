@@ -84,73 +84,120 @@ Vue.component('book-detail', {
                             Yorumlar
                           </div>
                             <div class="panel-body  col-lg-12">
-                                <textarea class="form-control" placeholder="Yorum yaz..." rows="3"></textarea>
-                                <br>
-                                <button type="button" class="btn btn-info pull-right">Yorum Ekle</button>
+                          
+                                <textarea id="yorumtext" class="form-control" placeholder="Yorum yaz..." rows="3" ></textarea>
+                                <br>                              
+                                <button v-on:click="YorumEkle" type="button" class="btn btn-info pull-right">Yorum Ekle</button>  
+                                <i>  <p id="errorText" style="color:red;float:right;margin-right:20px;visibility: collapse;">Lütfen Yorum Alanını Doldurunuz..!!</p> </i>                 
                                 <input id="input-1" book="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2">
                                 <div class="clearfix"></div>
                                 <hr>
                                 <ul class="media-list">
                                     <li class="media">
                                         <a href="#" class="pull-left">
-                                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                                        </a>
-                                        <div class="media-body">
-                                            <span class="text-muted pull-right">
-                                                <small class="text-muted">30 min ago</small>
-                                            </span>
-                                            <strong class="text-success">@MartinoMont</strong>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <a href="#" class="pull-left">
                                             <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
                                         </a>
                                         <div class="media-body">
                                             <span class="text-muted pull-right">
-                                                <small class="text-muted">30 min ago</small>
+                                            
+                                                   <button id="edit" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                                                <span class="glyphicon">&#x270f;</span>
+                                                </button>
+                                                <button id="trash" v-on:click="YorumSlme" type="button">
+                                                <span class="glyphicon"> &#xe020;</span>
+                                                </button>
+                                             
                                             </span>
                                             <strong class="text-success">@LaurenceCorreil</strong>
                                             <p>
                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                                 Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing elit.
                                             </p>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <a href="#" class="pull-left">
-                                            <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
-                                        </a>
-                                        <div class="media-body">
+                                            <div class="col-md-12">
                                             <span class="text-muted pull-right">
-                                                <small class="text-muted">30 min ago</small>
+                                            <small class="text-muted">30 min ago</small>
                                             </span>
-                                            <strong class="text-success">@JohnNida</strong>
-                                            <p>
-                                                Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.
-                                            </p>
-                                        </div>
+                                            </div>
+                                            </div>
                                     </li>
+                                  
                                 </ul>
                             </div>
                         </div>
                     </div>
             
                 </div>
-            </div>             
+            </div>     
+                    
               
             </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Yorum Düzenle</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="yorum-bolmesı" class="col-form-label">Yorum:</label>
+                      <input type="text" class="form-control" id="yorum-bolmesı" required>
+                    </div>
+                    <div class="form-group">
+                    <input id="input-1" book="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2">
+                  </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                <i>  <p id="errorTextDuzenle" style="color:red;float:right;margin-right:20px;display: none;">Lütfen Yorum Alanını Doldurunuz..!!</p> </i>     
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                  <button type="button" v-on:click="YorumDuzenle" class="btn btn-primary">Yorum Düzenle</button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+                  </div>
+          </div>
+   </div>
   `,
   props: {
     book: Object
   },
   methods:{
+    YorumEkle: function (event) {
+      if(document.getElementById("yorumtext").value == '')
+      {
+        document.getElementById("errorText").style.visibility ="visible";
+      }
+      else{
+        document.getElementById("errorText").style.visibility ="collapse";
+        alert('Hello ekle!')
+        
+      }
+      
+    },
+    YorumDuzenle: function (event) {
+     
+      //açılan pop-updaki alanı boş bırakmasın diye check 
+      if(document.getElementById("yorum-bolmesı").value == '')
+      {
+        document.getElementById("errorTextDuzenle").style.display ="inline";
+      }
+      else{
+        document.getElementById("errorTextDuzenle").style.display ="none";
+        alert('Hello ekle!')
+        
+      }
+      
+    },
+    YorumSlme: function (event) {
+     
+      alert('Hello sil!')
+      
+    }
 
   }
 });

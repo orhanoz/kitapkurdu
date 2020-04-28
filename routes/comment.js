@@ -92,4 +92,91 @@ router.post('/', function(req, res, next) {
     
 });
 
+
+/* UPDATE comment in database */
+router.put('/', function(req, res, next) { 
+    var models = req.app.locals.models;
+    var bookId = req.query.bookId;
+    var comment = req.body.comment;
+    var rating = req.body.rating;
+
+    if(bookId && comment && rating) {
+        //TODO: check userId & create comments
+        try {
+            rating = parseFloat(req.body.rating)
+            models.comment.update(
+                { comment: comment, rating: rating},
+                { where: { bookId: bookId } }
+            ).then(function (data) {
+                console.log(data)
+                res.json({
+                    status: {
+                       message: "Congratz! Comment updated!",
+                       success: true,
+                    },
+                    payload : data
+                });
+            }); 
+        } catch (error) {
+            res.json({
+                status: { 
+                   message: "check parameters!",
+                   success: false,
+                },
+                payload : { }
+            });
+        } 
+    } else {
+        res.json({
+            status: { 
+               message: "check parameters!",
+               success: false,
+            },
+            payload : { }
+        });
+    } 
+});
+
+
+/* DELETE comment in database */
+router.delete('/', function(req, res, next) { 
+    var models = req.app.locals.models;
+    var bookId = req.query.bookId;
+
+    if(bookId) {
+        //TODO: check userId & create comments
+        try {
+            models.comment.destroy(
+                { where: { bookId: bookId } }
+            ).then(function (data) {
+                console.log(data)
+                res.json({
+                    status: {
+                       message: "Congratz! Comment deleted!",
+                       success: true,
+                    },
+                    payload : data
+                });
+            }); 
+        } catch (error) {
+            res.json({
+                status: { 
+                   message: "check parameters!",
+                   success: false,
+                },
+                payload : { }
+            });
+        } 
+    } else {
+        res.json({
+            status: { 
+               message: "check parameters!",
+               success: false,
+            },
+            payload : { }
+        });
+    } 
+});
+
+
 module.exports = router;

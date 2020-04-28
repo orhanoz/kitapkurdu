@@ -25,7 +25,8 @@ module.exports = {
                 timestamps: false
             },
             tables: [
-                'user'
+                'user',
+                'comment'
             ]
     
         });

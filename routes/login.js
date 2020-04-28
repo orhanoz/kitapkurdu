@@ -4,8 +4,12 @@ var utils = require('./../config/utils');
 
 
 /* GET home page. */
-router.get('/', utils.checkSession, function(req, res, next) {
-    res.render('login', {gameState: 123});
+router.get('/', function(req, res, next) {
+    if (req.session && req.session.user && req.cookies.user_sid) { 
+        res.redirect('/');
+    } else {
+        res.render('login', {gameState: 123});
+    }
 });
 
 /* POST users listing. */
@@ -23,7 +27,7 @@ router.post('/', function(req, res, next) {
                 //A user found!
                 req.session.user = users[0].dataValues
                 res.redirect('/login?status=success');
-            } else { 
+            } else {
                 res.redirect('/login?status=failed');
             }
         });

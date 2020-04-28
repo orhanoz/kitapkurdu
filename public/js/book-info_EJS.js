@@ -168,25 +168,46 @@ Vue.component('book-detail', {
   },
   methods:{
     YorumEkle: function (event) {
-      if(document.getElementById("yorumtext").value == '')
-      {
-        document.getElementById("errorText").style.visibility ="visible";
-      }
-      else{
-        document.getElementById("errorText").style.visibility ="collapse";
-        alert('Hello ekle!')
-        
+      var self = this
+      var yorumText = document.getElementById("yorumtext").value
+      if (userId != "" && userId != undefined && userId != null) {
+        if(yorumText == '') {
+          document.getElementById("errorText").style.visibility ="visible";
+        } else {
+          document.getElementById("errorText").style.visibility ="collapse"; 
+          //TOOD: send commend request!
+          // 1- show confirm box: "Are you sure to send this comment?" > yes > send request | cancel... 
+          // 2- submit comment form /comment?userId=123456&bookId=123456 (comment & rating) > send
+          // 3- if success > show popup > refresh page
+          // 4- if fails > show popup > refresh page
+
+          axios.post(`/comment?userId=${userId}&bookId=${self.book.id}`, {
+            comment: yorumText,
+            rating: 3.7,
+            bookName: self.book.volumeInfo.title,
+            author: self.book.volumeInfo.authors.count == 0 ? "Unknown" : self.book.volumeInfo.authors[0],
+            selflink: self.book.selfLink,
+            imagelink: self.book.volumeInfo.imageLinks.smallThumbnail == undefined ? '' : self.book.volumeInfo.imageLinks.smallThumbnail
+          })
+          .then((response) => {
+            console.log(response);
+            alert("RESPONSE"+ response)
+          }, (error) => {
+            console.log(error);
+            alert("RESPONSE"+ error)
+          });
+        }
+      } else {
+        alert("Go sign in!")
       }
       
     },
     YorumDuzenle: function (event) {
      
       //açılan pop-updaki alanı boş bırakmasın diye check 
-      if(document.getElementById("yorum-bolmesı").value == '')
-      {
+      if(document.getElementById("yorum-bolmesı").value == '') {
         document.getElementById("errorTextDuzenle").style.display ="inline";
-      }
-      else{
+      } else{
         document.getElementById("errorTextDuzenle").style.display ="none";
         alert('Hello ekle!')
         

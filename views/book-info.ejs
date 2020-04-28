@@ -213,7 +213,8 @@ rating-loading{
   </style>
   <title>KitapKurdu</title> 
   <meta charset="utf-8">
-  <meta name="description" content="<%= link %>">
+  <meta name="selflink" content="<%= selflink %>">
+  <meta name="userId" content="<%= userId %>">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
     integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -228,7 +229,8 @@ rating-loading{
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
  
   <script> 
-      var selflink = document.querySelector('meta[name="description"]').content;
+      var selflink = document.querySelector('meta[name="selflink"]').content;
+      var userId = document.querySelector('meta[name="userId"]').content;
   </script>
 </head>
 

@@ -49,6 +49,7 @@ app.use('/forgot-password', require('./routes/forgot-password'));
 app.use('/reset-password', require('./routes/reset-password'));
 app.use('/search', require('./routes/search'));
 app.use('/book-info', require('./routes/book-info'));
+app.use('/comment', require('./routes/comment'));
 
 // error handler
 app.use(function(err, req, res, next) {

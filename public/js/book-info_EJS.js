@@ -192,15 +192,13 @@ Vue.component('book-detail', {
 Vue.component('comment', {
   template: `
       <div id="comment-item" v-if="comment">
-
         <div class="clearfix"></div>
         <hr>
-
         <a href="#" class="pull-left">
             <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
         </a>
         <div class="media-body">
-            <span class="text-muted pull-right">
+            <span class="text-muted pull-right" v-if="comment.userId">
                 <button id="edit" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                   <span class="glyphicon">&#x270f;</span>
                   </button>

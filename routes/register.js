@@ -3,8 +3,12 @@ var router = express.Router();
 var utils = require('./../config/utils');
 
 /* GET users listing. */
-router.get('/', utils.checkSession, function(req, res, next) {
-    res.render('register', {page:'About Us', menuId:'about'});
+router.get('/', function(req, res, next) {
+    if (req.session && req.session.user && req.cookies.user_sid) { 
+        res.redirect('/');
+    } else {
+        res.render('register', {page:'About Us', menuId:'about'});
+    }
 });
  
 /* POST users listing. */

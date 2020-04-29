@@ -5,12 +5,12 @@ Vue.component('profile', {
     template: `
         <div class="row" v-if="user">
             <div class="col-xs-12 col-sm-6 col-md-12">
-                <div class="row">
+                <div class="row" style="margin-top:3em; margin-bottom:3em;">
                     <div class="col-sm-6 col-md-2">
-                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive"
-                            height="150" width="150"  style="margin-bottom: 10px;"/>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRzEWMQC9euAL2VV-iZ22uUw5lvEhpj30wFtwRsAF0-UU8xFx72&usqp=CAU" alt="" class="img-rounded img-responsive"
+                            height="300" width="300"  style="margin-bottom: 10px;"/>
                     </div>
-                    <div class="col-sm-6 col-md-10">
+                    <div class="col-sm-6 col-md-10" style="margin-top:3em;">
                         <h5>Ad Soyad: <b>{{user.name + ' ' + user.surname}}</b></h5> 
                         <h5>Email: <b>{{user.email}}</b></h5> 
                         <h5>Hakkında: <b>{{user.about}}</b></h5> 
@@ -68,8 +68,8 @@ Vue.component('comment', {
             <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
         </a>
         <div class="media-body">
-            <span class="text-muted pull-right">
-                <button id="edit" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+            <span class="text-muted pull-right"  style="margin-right: 3em;">
+                <button id="edit" type="button" data-toggle="modal" style="display:none" data-target="#exampleModal" data-whatever="@mdo">
                   <span class="glyphicon">&#x270f;</span>
                   </button>
                   <button id="trash" data-toggle="modal"  v-on:click="deleteComment" type="button">

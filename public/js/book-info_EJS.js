@@ -198,7 +198,7 @@ Vue.component('comment', {
             <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
         </a>
         <div class="media-body">
-            <span class="text-muted pull-right" v-if="comment.userId">
+            <span class="text-muted pull-right" v-if="comment.userId"  style="margin-right: 5em;">
                 <button id="edit" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                   <span class="glyphicon">&#x270f;</span>
                   </button>
@@ -209,7 +209,7 @@ Vue.component('comment', {
             <strong class="text-success">@{{comment.username}}</strong>
             <p> {{ comment.comment }} </p>
             <div class="col-md-12">
-              <span class="text-muted pull-right">
+              <span class="text-muted pull-right"  style="margin-right: 3em;">
                 <small class="text-muted">{{ comment.created }}</small>
                 <small class="text-muted">{{ comment.rating }}</small>
               </span>

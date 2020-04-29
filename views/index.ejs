@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 
     <style>
@@ -30,7 +31,7 @@
 
 <body>
 
-    <div  class="wrapper d-flex align-items-stretch">
+    <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
             <div class="p-4 pt-5">
                 <a href="/profile" class="img logo rounded-circle mb-5"
@@ -79,69 +80,46 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Ana Sayfa</a>
+                                <a class="nav-link" href="/">Ana Sayfa</a>
                             </li>
                             <li>
-                                <button id="signOut" type="submit" class="btn btn-logout" style="margin: 1em;"> &nbsp;</button>
+                                <button id="signOut" type="submit" class="btn btn-logout" style="margin: 1em;">
+                                    &nbsp;</button>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-            <h2 class="mb-4">Kitap Kurdu Ekleme / Arama </h2>
-            <div id="app"  class="container">
+            <h2 class="mb-4">Kitap Kurdu Ana Sayfa </h2>
+            <div id="app" class="container">
                 <br />
                 <div class="row justify-content-center">
-                    <div class="col-12 col-md-10 col-lg-12">
 
-                        <div class="card-body row no-gutters align-items-center">
-                            <div class="col-auto">
-                                <i class="fas fa-search" style="font-size: large;"></i>
-                            </div>
-                            <!--end of col-->
-                            <div class="col">
-                                <input 
-                                    v-on:keyup="enter" 
-                                    v-model="searchText"
-                                    class="form-control form-control-lg form-control-borderless" 
-                                    type="search"
-                                    placeholder="ISBN, Kitap Adı, Kitap Yazarı Girin"
-                                    value="">
-                            </div>
-                            <!--end of col-->
-                            <div class="col-auto">
-                                <button id="searchButton" class="btn btn-lg btn-success" v-on:click="searchBooks"  id="btn1">Ara</button> 
-                            </div>
-                            <!--end of col-->
-                            
-                            
-
-                        </div>
-
-                    </div>
-                    <!--end of col-->
 
                     <!-- RESULT LIST -->
                     <div id="searchResult" class="container" style="padding-left: 120px;">
-                        <book v-for="(book,i) in books" :key="i" :book="book"/>
+                        <book v-for="(book,i) in books" :key="i" :book="book" />
                     </div>
 
                     <!-- PAGINATION -->
-                    </div class="pagination">
-                        <div class="paginator" style="padding-top: 40px">
-                            <button @click="previous" style="padding-right: 20px;"> << previous </button><span style="padding-left: 20px;padding-right: 20px;">Page: {{ pageIndex }}</span><button @click="next" style="padding-left: 20px;" > next >></button>
-                        </div>  
-                    </div>
-                    
+                </div class="pagination">
+                <div class="paginator" style="padding-top: 40px">
+                    <button @click="previous" style="padding-right: 20px;">
+                        << previous </button><span style="padding-left: 20px;padding-right: 20px;">Page:
+                                {{ pageIndex }}</span><button @click="next" style="padding-left: 20px;"> next
+                                >></button>
                 </div>
             </div>
 
         </div>
     </div>
+
+    </div>
+    </div>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script> 
-    <script src="js/search_EJS.js"></script>  
+    <script src="js/main.js"></script>
+    <script src="js/search_EJS.js"></script>
 
 </body>
 

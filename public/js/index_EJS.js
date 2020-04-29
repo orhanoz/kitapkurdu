@@ -1,31 +1,108 @@
 Vue.component("book", {
   template: `
-     <div class="row">
-        <div class="card col-md-10" style="padding-top:18px;">
-            <div class="row no-gutters" style="margin-bottom: 2%; border:1px solid #f8b739; border-radius: 6px;">
-                <div class="col-md-2">
-                    <img v-if="book.volumeInfo.imageLinks" :src="book.volumeInfo.imageLinks.smallThumbnail" alt="resim yuklenemedi" style="padding: 20px" />
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">{{book.volumeInfo.title}}</h5>
-                        <p class="card-text" style=" display: inline-block;width:600px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;max-height:150px"> {{book.volumeInfo.description}} </p>
-                       
-                    </div>
-                </div>
-                <br/>
-               
-                <div>
-                <div style="float:left;font-size:large">
-                <i @click="AddFavorites" class="heart fa fa-heart-o"></i>
-                </div>
-            </div>
-                    <button  v-bind:id="book.selfLink" class="btn btn-lg btn-primary" v-on:click="makeComment(book.selfLink)" style="float:right; width:120px; height:40px; position:absolute; bottom:30px; right:30px; font-size: 14px;">Göster</button> 
-                </div>
-            </div> 
-            
-        </div> 
+  <div class="row">
+  <div class="card col-md-10" style="padding-top: 18px;">
+    <div
+      class="row no-gutters"
+      style="margin-bottom: 2%; border: 1px solid #f8b739; border-radius: 6px;"
+    >
+      <div class="col-md-2">
+        <img
+          v-if="book.volumeInfo.imageLinks"
+          :src="book.volumeInfo.imageLinks.smallThumbnail"
+          alt="resim yuklenemedi"
+          style="padding: 20px;"
+        />
       </div>
+      <div class="col-md-2">
+        <img
+          v-if="book.volumeInfo.imageLinks"
+          :src="book.volumeInfo.imageLinks.smallThumbnail"
+          alt="resim yuklenemedi"
+          style="padding: 20px;"
+        />
+      </div>
+      <div class="col-md-2">
+        <img
+          v-if="book.volumeInfo.imageLinks"
+          :src="book.volumeInfo.imageLinks.smallThumbnail"
+          alt="resim yuklenemedi"
+          style="padding: 20px;"
+        />
+      </div>
+      <div class="col-md-2">
+        <img
+          v-if="book.volumeInfo.imageLinks"
+          :src="book.volumeInfo.imageLinks.smallThumbnail"
+          alt="resim yuklenemedi"
+          style="padding: 20px;"
+        />
+      </div>
+      <div class="col-md-2">
+        <img
+          v-if="book.volumeInfo.imageLinks"
+          :src="book.volumeInfo.imageLinks.smallThumbnail"
+          alt="resim yuklenemedi"
+          style="padding: 20px;"
+        />
+      </div>
+
+      <div class="col-md-2">
+        <img
+          v-if="book.volumeInfo.imageLinks"
+          :src="book.volumeInfo.imageLinks.smallThumbnail"
+          alt="resim yuklenemedi"
+          style="padding: 20px;"
+        />
+      </div>
+
+      <!--
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{book.volumeInfo.title}}</h5>
+          <p
+            class="card-text"
+            style="
+              display: inline-block;
+              width: 120px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              max-height: 100px;
+            "
+          >
+            {{book.volumeInfo.description}}
+          </p>
+        </div>
+      </div>
+      <br />
+
+      <div>
+        <div style="float: left; font-size: large;">
+          <i @click="AddFavorites" class="heart fa fa-heart-o"></i>
+        </div>
+      </div>
+      <button
+        v-bind:id="book.selfLink"
+        class="btn btn-lg btn-primary"
+        v-on:click="makeComment(book.selfLink)"
+        style="
+          float: right;
+          width: 120px;
+          height: 40px;
+          position: absolute;
+          bottom: 30px;
+          right: 30px;
+          font-size: 14px;
+        "
+      >
+        Göster
+      </button>
+      -->
+    </div>
+  </div>
+</div>
+
   `,
   props: {
     book: Object,

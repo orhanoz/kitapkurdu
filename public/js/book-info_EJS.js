@@ -135,7 +135,7 @@ Vue.component('book-detail', {
               </div>     
                 
               </div>
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" ref="exampleModal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -145,19 +145,20 @@ Vue.component('book-detail', {
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form>
+                    <form action="/comment" medhod="put">
+                      <input type="hidden" id="id" name="id">
                       <div class="form-group">
-                        <label for="yorum-bolmesı" class="col-form-label">Yorum:</label>
-                        <input type="text" class="form-control" id="yorum-bolmesı" required>
+                        <label for="yorum-bolmesi" class="col-form-label">Yorum:</label>
+                        <input type="text" class="form-control" id="yorum-bolmesi" required>
                       </div>
                       <div class="form-group">
                       <form class="rating-edit">
                       <label>
-                        <input type="radio" name="stars" value="1"  />
+                        <input type="radio" name="stars" value="1" />
                         <span class="icon">★</span>
                       </label>
                       <label>
-                        <input type="radio" name="stars" value="2" />
+                        <input type="radio" name="stars" value="2"/>
                         <span class="icon">★</span>
                         <span class="icon">★</span>
                       </label>
@@ -204,6 +205,9 @@ Vue.component('book-detail', {
     book: Object,
     comments: Array
   },
+  updated: function() { 
+    $(this.$refs.exampleModal).on('show.bs.modal', this.onModalAppear)
+  },
   methods: {
     YorumEkle: function (event) {
       var self = this
@@ -213,12 +217,6 @@ Vue.component('book-detail', {
           document.getElementById("errorText").style.visibility = "visible";
         } else if (yorumText != '' && this.rating != null) {
           document.getElementById("errorText").style.visibility = "collapse";
-          //TOOD: send commend request!
-          // 1- show confirm box: "Are you sure to send this comment?" > yes > send request | cancel... 
-          // 2- submit comment form /comment?userId=123456&bookId=123456 (comment & rating) > send
-          // 3- if success > show popup > refresh page
-          // 4- if fails > show popup > refresh page
-         
           axios.post(`/comment?userId=${userId}&bookId=${self.book.id}`, {
             comment: yorumText,
             rating: this.rating,
@@ -256,12 +254,21 @@ Vue.component('book-detail', {
 
         alert("Go sign in!")
       }
+    }, 
+    onModalAppear: function (e) {
+      // var id = $(e.relatedTarget).data('id'); 
+      // var rating = $(e.relatedTarget).data('rating'); 
+      // var comment = $(e.relatedTarget).data('comment'); 
+      // $(e.currentTarget).find('input[id="id"]').val(id);
+      // $(e.currentTarget).find('input[id="yorum-bolmesi"]').val(comment); 
+      // console.log(id + ' ' + rating + ' ' + comment)
     }
 
   }
 });
 
-
+//<!--  v-on:click="editComment(comment)" -->
+// :data-id="comment.id" :data-comment="comment.comment" :data-rating="comment.rating" data-target="#exampleModal"
 Vue.component('comment', {
   template: `
       <div id="comment-item" v-if="comment">
@@ -272,10 +279,10 @@ Vue.component('comment', {
         </a>
         <div class="media-body">
             <span class="text-muted pull-right" v-if="comment.userId"  style="margin-right: 5em;">
-                <button id="edit" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                <button id="edit" type="button" data-toggle="modal" v-on:click="editComment(comment)" > 
                   <span class="glyphicon">&#x270f;</span>
                   </button>
-                  <button id="trash" data-toggle="modal"  v-on:click="deleteComment" type="button">
+                  <button id="trash" v-on:click="deleteComment" type="button">
                   <span class="glyphicon"> &#xe020;</span>
                 </button>
             </span>
@@ -291,7 +298,7 @@ Vue.component('comment', {
                 <input type="radio" name="stars" value="comment.rating"/>
                 <span class="icon" v-for="n in comment.rating ">★</span>
               </label>
-            </form>                                                             
+            </form>                                                            
         </div>  
       </div>
   `,
@@ -336,18 +343,49 @@ Vue.component('comment', {
         }
       })
     },
-    editComment: function (event) {
-      //açılan pop-updaki yorum alanı ve yıldız boş bırakmasın diye check 
- 
-      if (document.getElementById("yorum-bolmesı").value == '') {
-        document.getElementById("errorTextDuzenle").style.display = "inline";
-      } else {
-        document.getElementById("errorTextDuzenle").style.display = "none";
-        bootbox.alert({ size:"small", message: "EDIT COMMENT!"})
-         
-        
-
-      }
+    editComment: function (comment) {
+        //açılan pop-updaki yorum alanı ve yıldız boş bırakmasın diye check 
+        console.log(comment)
+        bootbox.prompt({ title: "Yorumu Düzenle!", inputType: 'textarea', value:comment.comment, callback: function(newComment){ 
+          console.log(newComment); 
+          if(newComment) {
+            bootbox.confirm({
+              message: "Yorumu güncellemek istediğinize emin misiniz?",
+              callback: function (result) {
+                if (result) {
+                  $("#loadingModal").modal({ backdrop: false });
+                  axios.put(`/comment?id=${comment.id}`, {comment: newComment, rating: comment.rating})
+                    .then((response) => {
+                      $("#loadingModal").modal('hide');
+                      console.log(JSON.stringify(response));
+                      if (response.data.status.success) {
+                        bootbox.alert({
+                          size: "small", message: "Yorumunuz başarıyla güncellendi!", callback: function () {
+                            location.reload()
+                          }
+                        })
+                      } else {
+                        bootbox.alert({
+                          size: "small", message: "İşlem başarısız!\nTekrar Deneyin!", callback: function () {
+                            location.reload()
+                          }
+                        })
+                      }
+                    }, (error) => {
+                      $("#loadingModal").modal('hide');
+                      console.log(JSON.stringify(error));
+                      bootbox.alert({
+                        size: "small", message: "İşlem başarısız!\nTekrar Deneyin!", callback: function () {
+                          location.reload()
+                        }
+                      })
+                    });
+                } //if
+              } //callback
+            })//bootbox.confirm
+          }
+        }
+      })
     }
   }
 });
@@ -359,11 +397,10 @@ new Vue({
     comments: []
   },
   medthods: {
-    getComments: function () {
-      var self = this
-    }
+    
   },
   mounted: function () {
+
     var self = this
     if (selflink != "" && selflink != undefined && selflink != null) {
       axios

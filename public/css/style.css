@@ -8533,4 +8533,10 @@ a[data-toggle="collapse"] {
 }
 .active>a {
   color: #1abc9c !important;;
-}
+} 
+
+.bootbox .modal-header {
+  flex-direction: row-reverse;
+  }
+  
+  

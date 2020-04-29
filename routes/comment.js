@@ -51,13 +51,14 @@ router.post('/', function(req, res, next) {
     var bookName =  req.body.bookName;
     var author =  req.body.author; 
     var selflink =  req.body.selflink; 
-    var imagelink =  req.body.imagelink; 
+    var imageLink =  req.body.imageLink; 
+    var username =  req.body.username; 
 
     if(userId && bookId && comment && rating && selflink) {
         //TODO: check userId & create comments
         try {
             rating = parseFloat(req.body.rating)
-            var new_comment = { userId:userId, bookId:bookId, comment:comment, rating:rating, bookName:bookName, author:author, selflink:selflink, imageLink:imageLink }
+            var new_comment = { userId:userId, bookId:bookId, comment:comment, rating:rating, bookName:bookName, author:author, selflink:selflink, imageLink:imageLink, username:username }
             models.comment.build(new_comment)
                         .save()
                         .then(function (data) {
@@ -96,17 +97,17 @@ router.post('/', function(req, res, next) {
 /* UPDATE comment in database */
 router.put('/', function(req, res, next) { 
     var models = req.app.locals.models;
-    var bookId = req.query.bookId;
+    var id = req.query.id;
     var comment = req.body.comment;
     var rating = req.body.rating;
 
-    if(bookId && comment && rating) {
+    if(id && comment && rating) {
         //TODO: check userId & create comments
         try {
             rating = parseFloat(req.body.rating)
             models.comment.update(
                 { comment: comment, rating: rating},
-                { where: { bookId: bookId } }
+                { where: { id: id } }
             ).then(function (data) {
                 console.log(data)
                 res.json({
@@ -141,13 +142,13 @@ router.put('/', function(req, res, next) {
 /* DELETE comment in database */
 router.delete('/', function(req, res, next) { 
     var models = req.app.locals.models;
-    var bookId = req.query.bookId;
+    var id = req.query.id; 
 
-    if(bookId) {
+    if(id) {
         //TODO: check userId & create comments
         try {
             models.comment.destroy(
-                { where: { bookId: bookId } }
+                { where: { id: id } }
             ).then(function (data) {
                 console.log(data)
                 res.json({

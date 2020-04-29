@@ -16,6 +16,10 @@ module.exports = function(sequelize, DataTypes) {
 				key: 'id'
 			}
 		},
+		username: {
+			type: DataTypes.STRING(100),
+			allowNull: true
+		},
 		bookId: {
 			type: DataTypes.STRING(100),
 			allowNull: true
@@ -27,6 +31,22 @@ module.exports = function(sequelize, DataTypes) {
 		rating: {
 			type: DataTypes.DECIMAL,
 			allowNull: false
+		},
+		bookName: {
+			type: DataTypes.STRING(255),
+			allowNull: true
+		},
+		author: {
+			type: DataTypes.STRING(10000),
+			allowNull: true
+		},
+		selflink: {
+			type: DataTypes.STRING(255),
+			allowNull: true
+		},
+		imageLink: {
+			type: DataTypes.STRING(10000),
+			allowNull: true
 		},
 		created: {
 			type: DataTypes.DATE,

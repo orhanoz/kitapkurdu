@@ -227,6 +227,7 @@ rating-loading{
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
  
   <script> 
       var selflink = document.querySelector('meta[name="selflink"]').content;
@@ -305,6 +306,8 @@ rating-loading{
     </div>
     </div>
     
+  <% include partials/loading %>  
+
   <script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -312,5 +315,21 @@ rating-loading{
   <script src="./js/star.js"></script>
   <script src="js/book-info_EJS.js"></script>
 </body>
+
+
+<script>
+  var user = {} 
+  var self = this
+  if (userId != "" && userId != undefined && userId != null) { 
+      axios.post(`/profile?userId=${userId}`)
+            .then((response) => {
+                self.user = response.data.payload
+            }, (error) => {
+                console.log(JSON.stringify(error));
+            });
+  } else {
+    window.location = "/"
+  } 
+</script>
 
 </html>

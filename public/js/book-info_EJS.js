@@ -124,7 +124,7 @@ Vue.component('book-detail', {
                   <div class="modal-footer">
                   <i>  <p id="errorTextDuzenle" style="color:red;float:right;margin-right:20px;display: none;">Lütfen Yorum Alanını Doldurunuz..!!</p> </i>     
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                    <button type="button" class="btn btn-primary">Yorum Düzenle</button> <!-- v-on:click="editComment"  -->
+                    <button type="button" class="btn btn-primary">Yorum Düzenle</button>
                   </div>
                 </div>
               </div>
@@ -158,15 +158,26 @@ Vue.component('book-detail', {
             rating: 3.7,
             bookName: self.book.volumeInfo.title,
             author: self.book.volumeInfo.authors.count == 0 ? "Unknown" : self.book.volumeInfo.authors[0],
-            selflink: self.book.selfLink,
-            imagelink: self.book.volumeInfo.imageLinks.smallThumbnail == undefined ? '' : self.book.volumeInfo.imageLinks.smallThumbnail
+            selflink: selflink,
+            imageLink: self.book.volumeInfo.imageLinks.smallThumbnail == undefined ? '' : self.book.volumeInfo.imageLinks.smallThumbnail,
+            username: user.name+user.surname
           })
           .then((response) => {
             console.log(response);
-            alert("RESPONSE"+ response)
+            if(response.data.status.success){ 
+                bootbox.alert({ size:"small", message: "Yorum başarıyla eklendi!", callback: function(){
+                  location.reload()
+                }})
+            } else {
+                bootbox.alert({ size:"small", message: "İşlem başarısız!\nTekrar Deneyin!", callback: function(){
+                  location.reload()
+                }})
+            }
           }, (error) => {
             console.log(error);
-            alert("RESPONSE"+ error)
+            bootbox.alert({ size:"small", message: "İşlem başarısız!\nTekrar Deneyin!", callback: function(){
+              location.reload()
+            }})
           });
         }
       } else {
@@ -174,15 +185,6 @@ Vue.component('book-detail', {
       }
     }
 
-  },
-  editComment: function (event) { 
-    //açılan pop-updaki alanı boş bırakmasın diye check 
-    if(document.getElementById("yorum-bolmesı").value == '') {
-      document.getElementById("errorTextDuzenle").style.display ="inline";
-    } else{
-      document.getElementById("errorTextDuzenle").style.display ="none";
-      alert('Hello ekle!')
-    }
   }
 });
 
@@ -202,11 +204,11 @@ Vue.component('comment', {
                 <button id="edit" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                   <span class="glyphicon">&#x270f;</span>
                   </button>
-                  <button id="trash" data-toggle="modal" data-target="#sureToDelete" type="button">
+                  <button id="trash" data-toggle="modal"  v-on:click="deleteComment" type="button">
                   <span class="glyphicon"> &#xe020;</span>
                 </button>
             </span>
-            <strong class="text-success">@LaurenceCorreil</strong>
+            <strong class="text-success">@{{comment.username}}</strong>
             <p> {{ comment.comment }} </p>
             <div class="col-md-12">
               <span class="text-muted pull-right">
@@ -214,28 +216,7 @@ Vue.component('comment', {
                 <small class="text-muted">{{ comment.rating }}</small>
               </span>
             </div>
-        </div> 
-
-
-        <div class="modal fade" id="sureToDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                          ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hayır</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="deleteComment">Evet</button>
-                        </div>
-                  </div>
-            </div>
-      </div>
+        </div>  
       </div>
   `,
   props: {
@@ -243,7 +224,35 @@ Vue.component('comment', {
   },
   methods: {
     deleteComment: function (event) {
-      alert('Hello sil!')
+      var self = this
+      bootbox.confirm({ 
+          message: "Yorumu istediğinize emin misiniz?",
+          callback: function(result){ 
+              if(result) {
+                  $("#loadingModal").modal({backdrop:false });
+                  axios.delete(`/comment?id=${self.comment.id}`)
+                    .then((response) => {
+                      $("#loadingModal").modal('hide');
+                      console.log(JSON.stringify(response));
+                      if(response.data.status.success) {
+                        bootbox.alert({ size:"small", message: "Yorumunuz başarıyla silindi!", callback: function(){
+                          location.reload()
+                        }})
+                      } else {
+                        bootbox.alert({ size:"small", message: "İşlem başarısız!\nTekrar Deneyin!", callback: function(){
+                          location.reload()
+                        }})
+                      }
+                    }, (error) => {
+                      $("#loadingModal").modal('hide');
+                      console.log(JSON.stringify(error));
+                      bootbox.alert({ size:"small", message: "İşlem başarısız!\nTekrar Deneyin!", callback: function(){
+                        location.reload()
+                      }})
+                    });
+              }
+          }
+      })
     },
     editComment: function (event) { 
       //açılan pop-updaki alanı boş bırakmasın diye check 
@@ -251,7 +260,7 @@ Vue.component('comment', {
         document.getElementById("errorTextDuzenle").style.display ="inline";
       } else{
         document.getElementById("errorTextDuzenle").style.display ="none";
-        alert('Hello ekle!')
+        bootbox.alert({ size:"small", message: "EDIT COMMENT!"})
       }
     }
   }

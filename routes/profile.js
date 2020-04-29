@@ -9,7 +9,7 @@ router.get('/', utils.checkSession, function(req, res, next) {
 
 
 /* POST users listing. */
-router.post('/', function(req, res, next) { 
+router.post('/', function(req, res, next) {
     var models = req.app.locals.models;  
     let userId = parseInt(req.query.userId);
 

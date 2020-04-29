@@ -45,6 +45,203 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  .rating {
+    display: inline-block;
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    font-size: 40px;
+  }
+  
+  .rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .rating label:last-child {
+    position: static;
+  }
+  
+  .rating label:nth-child(1) {
+    z-index: 5;
+  }
+  
+  .rating label:nth-child(2) {
+    z-index: 4;
+  }
+  
+  .rating label:nth-child(3) {
+    z-index: 3;
+  }
+  
+  .rating label:nth-child(4) {
+    z-index: 2;
+  }
+  
+  .rating label:nth-child(5) {
+    z-index: 1;
+  }
+  
+  .rating label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  
+  .rating label .icon {
+    float: left;
+    color: transparent;
+  }
+  
+  .rating label:last-child .icon {
+    color:wheat;  
+  }
+  
+  .rating:not(:hover) label input:checked ~ .icon,
+  .rating:hover label:hover input ~ .icon {
+    color: #deb217;
+  }
+  
+  .rating label input:focus:not(:checked) ~ .icon:last-child {
+    color: wheat;  
+    text-shadow: 0 0 5px#deb217;
+  }
+
+  .rating-comment {
+    display: inline-block;
+    position: relative;
+    height: 20px;
+    line-height: 20px;
+    font-size: 20px;
+  }
+  
+  .rating-comment label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .rating-comment label:last-child {
+    position: static;
+  }
+  
+  .rating-comment label:nth-child(1) {
+    z-index: 5;
+  }
+  
+  .rating-comment label:nth-child(2) {
+    z-index: 4;
+  }
+  
+  .rating-comment label:nth-child(3) {
+    z-index: 3;
+  }
+  
+  .rating-comment label:nth-child(4) {
+    z-index: 2;
+  }
+  
+  .rating-comment label:nth-child(5) {
+    z-index: 1;
+  }
+  
+  .rating-comment label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  
+  .rating-comment label .icon {
+    float: left;
+    color: transparent;
+  }
+  
+  .rating-comment label:last-child .icon {
+    color:#deb217;  
+  }
+  
+  .rating-comment:not(:hover) label input:checked ~ .icon,
+  .rating-comment:hover label:hover input ~ .icon {
+    color: #deb217;
+  }
+  
+  .rating-comment label input:focus:not(:checked) ~ .icon:last-child {
+    color: #deb217;  
+    text-shadow: 0 0 5px#deb217;
+  }
+
+  .rating-edit {
+    display: inline-block;
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    font-size: 30px;
+  }
+  
+  .rating-edit label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .rating-edit label:last-child {
+    position: static;
+  }
+  
+  .rating-edit label:nth-child(1) {
+    z-index: 5;
+  }
+  
+  .rating-edit label:nth-child(2) {
+    z-index: 4;
+  }
+  
+  .rating-edit label:nth-child(3) {
+    z-index: 3;
+  }
+  
+  .rating-edit label:nth-child(4) {
+    z-index: 2;
+  }
+  
+  .rating-edit label:nth-child(5) {
+    z-index: 1;
+  }
+  
+  .rating-edit label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  
+  .rating-edit label .icon {
+    float: left;
+    color: transparent;
+  }
+  
+  .rating-edit label:last-child .icon {
+    color:wheat;  
+  }
+  
+  .rating-edit:not(:hover) label input:checked ~ .icon,
+  .rating-edit:hover label:hover input ~ .icon {
+    color: #deb217;
+  }
+  
+  .rating-edit label input:focus:not(:checked) ~ .icon:last-child {
+    color: wheat;  
+    text-shadow: 0 0 5px#deb217;
+  }
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }

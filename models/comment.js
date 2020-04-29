@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true
 		},
 		rating: {
-			type: DataTypes.DECIMAL,
+			type: DataTypes.INTEGER(11),
 			allowNull: false
 		},
 		bookName: {

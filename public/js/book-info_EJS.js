@@ -87,8 +87,42 @@ Vue.component('book-detail', {
                                 <textarea id="yorumtext" class="form-control" placeholder="Yorum yaz..." rows="3" ></textarea>
                                 <br>                              
                                 <button v-on:click="YorumEkle" type="button" class="btn btn-info pull-right">Yorum Ekle</button>  
-                                <i>  <p id="errorText" style="color:red;float:right;margin-right:20px;visibility: collapse;">Lütfen Yorum Alanını Doldurunuz..!!</p> </i>                 
-                                <input id="input-1" book="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2">
+                                <i>  <p id="errorText" style="color:red;float:right;margin-right:20px;visibility: collapse;">Lütfen Yorum Alanını Yıldızlarla Beraber Doldurunuz..!!</p> </i>   
+                           
+                                <form class="rating">
+                                <label>
+                                  <input type="radio" name="stars" value="1" v-model="rating" />
+                                  <span class="icon">★</span>
+                                </label>
+                                <label>
+                                  <input type="radio" name="stars" value="2" v-model="rating"/>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                </label>
+                                <label>
+                                  <input type="radio" name="stars" value="3" v-model="rating"/>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>   
+                                </label>
+                                <label>
+                                  <input type="radio" name="stars" value="4" v-model="rating"/>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                </label>
+                                <label>
+                                  <input type="radio" name="stars" value="5" v-model="rating"/>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                </label>
+                              </form>   
+                              
+                 
                             </div>
 
                             <div id="searchResult" class="container"  style="margin-bottom:1%" v-if="comments">
@@ -117,12 +151,44 @@ Vue.component('book-detail', {
                         <input type="text" class="form-control" id="yorum-bolmesı" required>
                       </div>
                       <div class="form-group">
-                      <input id="input-1" book="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2">
+                      <form class="rating-edit">
+                      <label>
+                        <input type="radio" name="stars" value="1"  />
+                        <span class="icon">★</span>
+                      </label>
+                      <label>
+                        <input type="radio" name="stars" value="2" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                      <label>
+                        <input type="radio" name="stars" value="3" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>   
+                      </label>
+                      <label>
+                        <input type="radio" name="stars" value="4" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                      <label>
+                        <input type="radio" name="stars" value="5" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                    </form>   
+                   
                     </div>
                   </form>
                   </div>
                   <div class="modal-footer">
-                  <i>  <p id="errorTextDuzenle" style="color:red;float:right;margin-right:20px;display: none;">Lütfen Yorum Alanını Doldurunuz..!!</p> </i>     
+                  <i>  <p id="errorTextDuzenle" style="color:red;float:right;margin-right:20px;display: none;">Lütfen Yorum Alanını Yıldızlarla Beraber Doldurunuz..!!</p> </i>     
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
                     <button type="button" class="btn btn-primary">Yorum Düzenle</button>
                   </div>
@@ -138,49 +204,56 @@ Vue.component('book-detail', {
     book: Object,
     comments: Array
   },
-  methods:{
+  methods: {
     YorumEkle: function (event) {
       var self = this
       var yorumText = document.getElementById("yorumtext").value
       if (userId != "" && userId != undefined && userId != null) {
-        if(yorumText == '') {
-          document.getElementById("errorText").style.visibility ="visible";
-        } else {
-          document.getElementById("errorText").style.visibility ="collapse"; 
+        if (yorumText == '' || this.rating == null) {
+          document.getElementById("errorText").style.visibility = "visible";
+        } else if (yorumText != '' && this.rating != null) {
+          document.getElementById("errorText").style.visibility = "collapse";
           //TOOD: send commend request!
           // 1- show confirm box: "Are you sure to send this comment?" > yes > send request | cancel... 
           // 2- submit comment form /comment?userId=123456&bookId=123456 (comment & rating) > send
           // 3- if success > show popup > refresh page
           // 4- if fails > show popup > refresh page
-
+         
           axios.post(`/comment?userId=${userId}&bookId=${self.book.id}`, {
             comment: yorumText,
-            rating: 3.7,
+            rating: this.rating,
             bookName: self.book.volumeInfo.title,
             author: self.book.volumeInfo.authors.count == 0 ? "Unknown" : self.book.volumeInfo.authors[0],
             selflink: selflink,
             imageLink: self.book.volumeInfo.imageLinks.smallThumbnail == undefined ? '' : self.book.volumeInfo.imageLinks.smallThumbnail,
-            username: user.name+user.surname
+            username: user.name + user.surname
           })
-          .then((response) => {
-            console.log(response);
-            if(response.data.status.success){ 
-                bootbox.alert({ size:"small", message: "Yorum başarıyla eklendi!", callback: function(){
+            .then((response) => {
+              console.log(response);
+              if (response.data.status.success) {
+                bootbox.alert({
+                  size: "small", message: "Yorum başarıyla eklendi!", callback: function () {
+                    location.reload()
+                  }
+                })
+              } else {
+                bootbox.alert({
+                  size: "small", message: "İşlem başarısız!\nTekrar Deneyin!", callback: function () {
+                    location.reload()
+                  }
+                })
+              }
+            }, (error) => {
+              console.log(error);
+              bootbox.alert({
+                size: "small", message: "İşlem başarısız!\nTekrar Deneyin!", callback: function () {
                   location.reload()
-                }})
-            } else {
-                bootbox.alert({ size:"small", message: "İşlem başarısız!\nTekrar Deneyin!", callback: function(){
-                  location.reload()
-                }})
-            }
-          }, (error) => {
-            console.log(error);
-            bootbox.alert({ size:"small", message: "İşlem başarısız!\nTekrar Deneyin!", callback: function(){
-              location.reload()
-            }})
-          });
+                }
+              })
+            });
         }
       } else {
+
         alert("Go sign in!")
       }
     }
@@ -209,11 +282,16 @@ Vue.component('comment', {
             <strong class="text-success">@{{comment.username}}</strong>
             <p> {{ comment.comment }} </p>
             <div class="col-md-12">
-              <span class="text-muted pull-right"  style="margin-right: 3em;">
+              <span class="text-muted pull-right" style="margin-right: 3em;">
                 <small class="text-muted">{{ comment.created }}</small>
-                <small class="text-muted">{{ comment.rating }}</small>
               </span>
             </div>
+            <form class="rating-comment">
+              <label>
+                <input type="radio" name="stars" value="comment.rating"/>
+                <span class="icon" v-for="n in comment.rating ">★</span>
+              </label>
+            </form>                                                             
         </div>  
       </div>
   `,
@@ -223,68 +301,78 @@ Vue.component('comment', {
   methods: {
     deleteComment: function (event) {
       var self = this
-      bootbox.confirm({ 
-          message: "Yorumu istediğinize emin misiniz?",
-          callback: function(result){ 
-              if(result) {
-                  $("#loadingModal").modal({backdrop:false });
-                  axios.delete(`/comment?id=${self.comment.id}`)
-                    .then((response) => {
-                      $("#loadingModal").modal('hide');
-                      console.log(JSON.stringify(response));
-                      if(response.data.status.success) {
-                        bootbox.alert({ size:"small", message: "Yorumunuz başarıyla silindi!", callback: function(){
-                          location.reload()
-                        }})
-                      } else {
-                        bootbox.alert({ size:"small", message: "İşlem başarısız!\nTekrar Deneyin!", callback: function(){
-                          location.reload()
-                        }})
-                      }
-                    }, (error) => {
-                      $("#loadingModal").modal('hide');
-                      console.log(JSON.stringify(error));
-                      bootbox.alert({ size:"small", message: "İşlem başarısız!\nTekrar Deneyin!", callback: function(){
-                        location.reload()
-                      }})
-                    });
-              }
+      bootbox.confirm({
+        message: "Yorumu silmek istediğinize emin misiniz?",
+        callback: function (result) {
+          if (result) {
+            $("#loadingModal").modal({ backdrop: false });
+            axios.delete(`/comment?id=${self.comment.id}`)
+              .then((response) => {
+                $("#loadingModal").modal('hide');
+                console.log(JSON.stringify(response));
+                if (response.data.status.success) {
+                  bootbox.alert({
+                    size: "small", message: "Yorumunuz başarıyla silindi!", callback: function () {
+                      location.reload()
+                    }
+                  })
+                } else {
+                  bootbox.alert({
+                    size: "small", message: "İşlem başarısız!\nTekrar Deneyin!", callback: function () {
+                      location.reload()
+                    }
+                  })
+                }
+              }, (error) => {
+                $("#loadingModal").modal('hide');
+                console.log(JSON.stringify(error));
+                bootbox.alert({
+                  size: "small", message: "İşlem başarısız!\nTekrar Deneyin!", callback: function () {
+                    location.reload()
+                  }
+                })
+              });
           }
+        }
       })
     },
-    editComment: function (event) { 
-      //açılan pop-updaki alanı boş bırakmasın diye check 
-      if(document.getElementById("yorum-bolmesı").value == '') {
-        document.getElementById("errorTextDuzenle").style.display ="inline";
-      } else{
-        document.getElementById("errorTextDuzenle").style.display ="none";
+    editComment: function (event) {
+      //açılan pop-updaki yorum alanı ve yıldız boş bırakmasın diye check 
+ 
+      if (document.getElementById("yorum-bolmesı").value == '') {
+        document.getElementById("errorTextDuzenle").style.display = "inline";
+      } else {
+        document.getElementById("errorTextDuzenle").style.display = "none";
         bootbox.alert({ size:"small", message: "EDIT COMMENT!"})
+         
+        
+
       }
     }
   }
-}); 
+});
 
 new Vue({
   el: '#app',
   data: {
-      book: {},
-      comments: []
+    book: {},
+    comments: []
   },
-  medthods : {
-    getComments : function(){
+  medthods: {
+    getComments: function () {
       var self = this
     }
   },
-  mounted: function(){
+  mounted: function () {
     var self = this
     if (selflink != "" && selflink != undefined && selflink != null) {
       axios
         .get(selflink)
-        .then(function(response){
-            self.book = response.data
-            console.log(self.book)
-            var itself = self
-            axios.get(`/comment?bookId=${self.book.id}`)
+        .then(function (response) {
+          self.book = response.data
+          console.log(self.book)
+          var itself = self
+          axios.get(`/comment?bookId=${self.book.id}`)
             .then((response) => {
               itself.comments = response.data.payload
               console.log(JSON.stringify(response));
@@ -293,7 +381,7 @@ new Vue({
             });
         })
         .catch(error => {
-            console.log(error.response)
+          console.log(error.response)
         });
     } else {
       window.location = "/search"

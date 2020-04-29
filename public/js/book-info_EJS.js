@@ -91,7 +91,7 @@ Vue.component('book-detail', {
                                 <input id="input-1" book="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2">
                             </div>
 
-                            <div id="searchResult" class="container"  style="margin-bottom:1%">
+                            <div id="searchResult" class="container"  style="margin-bottom:1%" v-if="comments">
                               <comment v-for="(comment,i) in comments" :key="i" :comment="comment"/>
                             </div>
                           </div>
@@ -135,8 +135,8 @@ Vue.component('book-detail', {
     </div>
   `,
   props: {
-    book: {},
-    comments: []
+    book: Object,
+    comments: Array
   },
   methods:{
     YorumEkle: function (event) {
@@ -215,26 +215,28 @@ Vue.component('comment', {
               </span>
             </div>
         </div> 
+
+
+        <div class="modal fade" id="sureToDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                          ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hayır</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="deleteComment">Evet</button>
+                        </div>
+                  </div>
+            </div>
       </div>
-      <div class="modal fade" id="sureToDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hayır</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="deleteComment">Evet</button>
-          </div>
-        </div>
       </div>
-    </div>
   `,
   props: {
     comment: Object

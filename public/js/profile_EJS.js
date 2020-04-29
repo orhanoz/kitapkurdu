@@ -41,8 +41,8 @@ Vue.component('profile', {
         </div>
     `,
     props: {
-      user: {},
-      comments: []
+      user: Object,
+      comments: Array
     },
     methods: {
       deleteComment: function (event) {

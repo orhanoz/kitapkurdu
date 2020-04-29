@@ -90,11 +90,8 @@
                             <li class="nav-item active">
                                 <a class="nav-link" href="#">Ana Sayfa</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Hakkımızda</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">İletişim</a>
+                            <li>
+                                <button id="signOut" type="submit" class="btn btn-warning" style="margin: 1em;">  Çıkış Yap </button>
                             </li>
                         </ul>
                     </div>
@@ -147,6 +144,23 @@
     <script src="js/main.js"></script>
     <script src="js/star.js"></script>
     <!-- <script src="js/book-info_EJS.js"></script> -->
+	
+	<script>
+    $(document).ready(function(){
+        $("#signOut").click(function(){ 
+            bootbox.confirm({ 
+                message: "Çıkış yapmak istediğinize emin misiniz?",
+                callback: function(result){ 
+                    if(result) {
+                        $("#loadingModal").modal({backdrop:false });
+                        setTimeout(function(){$("#loadingModal").modal('hide');  window.location.href = "/logout"; }, 2000);
+                    }
+                }
+            })
+        });
+    });
+    </script>
+	
 </body>
 
 </html>

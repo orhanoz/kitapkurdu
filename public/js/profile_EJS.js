@@ -77,7 +77,8 @@ Vue.component('comment', {
                 </button>
             </span>
             <strong class="text-success">@{{comment.username}}</strong>
-            <p> {{ comment.comment }} </p>
+            <b><p> {{ comment.bookName + ' - ' + comment.author }} </p></b>
+            <p><b> Comment: </b>{{ comment.comment }} </p>
             <div class="col-md-12">
               <span class="text-muted pull-right">
                 <small class="text-muted">{{ comment.created }}</small>

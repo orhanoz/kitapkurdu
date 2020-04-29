@@ -6,7 +6,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) { 
     var models = req.app.locals.models;
     var bookId = req.query.bookId;
-    var userId = req.query.bookId;
+    var userId = req.query.userId;
 
     if(bookId) {
         //TODO: fetch comments of 1 user!

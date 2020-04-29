@@ -298,8 +298,8 @@ rating-loading{
         </div>
       </nav>
       <h2 class="mb-4">Kitap Bilgi Gösterme </h2>
-      <div class="container" id="demo">
-        <book-detail v-if="book" :book="book" />
+      <div class="container" id="app">
+          <book-detail v-if="book" :book="book" :comments="comments" /> 
       </div> 
 
     </div>

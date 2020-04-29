@@ -47,7 +47,7 @@
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
             <div class="p-4 pt-5">
-                <a href="mainpage.html" class="img logo rounded-circle mb-5"
+                <a href="/profile" class="img logo rounded-circle mb-5"
                     style="background-image: url(img/kitapkurdu.jpg);"></a>
                 <ul class="list-unstyled components mb-5">
                     <li>
@@ -95,11 +95,8 @@
                             <li class="nav-item active">
                                 <a class="nav-link" href="#">Ana Sayfa</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Hakkımızda</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">İletişim</a>
+                            <li>
+                                <button id="signOut" type="submit" class="btn btn-warning" style="margin: 1em;">  Çıkış Yap </button>
                             </li>
                         </ul>
                     </div>
@@ -123,6 +120,23 @@
     <script src="js/star.js"></script>
     <script src="js/profile_EJS.js"></script>
 
+	
+	<script>
+    $(document).ready(function(){
+        $("#signOut").click(function(){ 
+            bootbox.confirm({ 
+                message: "Çıkış yapmak istediğinize emin misiniz?",
+                callback: function(result){ 
+                    if(result) {
+                        $("#loadingModal").modal({backdrop:false });
+                        setTimeout(function(){$("#loadingModal").modal('hide');  window.location.href = "/logout"; }, 2000);
+                    }
+                }
+            })
+        });
+    });
+    </script>
+	
 </body>
 
 

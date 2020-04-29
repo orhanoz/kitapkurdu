@@ -2195,6 +2195,20 @@ fieldset:disabled a.btn {
       -webkit-box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5);
       box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5); }
 
+.btn-logout {
+  width: 28px;
+  height: 28px;
+  background-image: url("../img/logout.png");
+  background-size: 102% 100%;
+}
+
+.btn-login {
+  width: 28px;
+  height: 28px;
+  background-image: url("../img/login.png");
+  background-size: 102% 100%;
+}   
+
 .btn-danger {
   color: #fff;
   background-color: #dc3545;

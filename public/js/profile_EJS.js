@@ -4,16 +4,16 @@
 Vue.component('profile', {
     template: `
         <div class="row" v-if="user">
-            <div class="col-xs-12 col-sm-6 col-md-12">
+            <div class="col-xs-12 col-sm-6 col-md-12" >
                 <div class="row" style="margin-top:3em; margin-bottom:3em;">
                     <div class="col-sm-6 col-md-2">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRzEWMQC9euAL2VV-iZ22uUw5lvEhpj30wFtwRsAF0-UU8xFx72&usqp=CAU" alt="" class="img-rounded img-responsive"
                             height="300" width="300"  style="margin-bottom: 10px;"/>
                     </div>
-                    <div class="col-sm-6 col-md-10" style="margin-top:3em;">
-                        <h5>Ad Soyad: <b>{{user.name + ' ' + user.surname}}</b></h5> 
-                        <h5>Email: <b>{{user.email}}</b></h5> 
-                        <h5>Hakkında: <b>{{user.about}}</b></h5> 
+                    <div class="col-sm-6 col-md-10" style="margin-top:6em;">
+                        <h5 style="margin-left:3em;">Ad Soyad: <b>{{user.name + ' ' + user.surname}}</b></h5> 
+                        <h5 style="margin-left:3em;">Email: <b>{{user.email}}</b></h5> 
+                        <h5 style="margin-left:3em;">Hakkında: <b>{{user.about}}</b></h5> 
                     </div>
                 </div>                     
             </div>

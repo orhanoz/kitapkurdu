@@ -23,14 +23,11 @@
         integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="js/axios.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
 
     <% if (userId) { %>
@@ -47,14 +44,11 @@
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
             <div class="p-4 pt-5">
-                <a href="/profile" class="img logo rounded-circle mb-5"
+                <a href="/" class="img logo rounded-circle mb-5"
                     style="background-image: url(img/kitapkurdu.jpg);"></a>
                 <ul class="list-unstyled components mb-5">
                     <li>
-                        <a href="#">Kitap Listeleri</a>
-                    </li>
-                    <li>
-                        <a href="#">Favori Kitaplarım</a>
+                        <a href="/profile">Profil</a>
                     </li>
                     <li>
                         <a href="/search">Kitap Ara</a>
@@ -114,7 +108,6 @@
 
     <% include partials/loading %>
 
-    <script src="js/jquery.min.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>

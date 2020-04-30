@@ -34,14 +34,11 @@
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
             <div class="p-4 pt-5">
-                <a href="/profile" class="img logo rounded-circle mb-5"
+                <a href="/" class="img logo rounded-circle mb-5"
                     style="background-image: url(img/kitapkurdu.jpg);"></a>
                 <ul class="list-unstyled components mb-5">
                     <li>
-                        <a href="#">Kitap Listeleri</a>
-                    </li>
-                    <li>
-                        <a href="#">Favori Kitaplarım</a>
+                        <a href="/profile">Profil</a>
                     </li>
                     <li>
                         <a href="/search">Kitap Ara</a>
@@ -103,7 +100,7 @@
 
                     <!-- PAGINATION -->
                 </div class="pagination">
-                <div class="paginator" style="padding-top: 40px">
+                <div class="paginator" style="padding-top: 40px; display: none;">
                     <button @click="previous" style="padding-right: 20px;">
                         << previous </button><span style="padding-left: 20px;padding-right: 20px;">Page:
                                 {{ pageIndex }}</span><button @click="next" style="padding-left: 20px;"> next

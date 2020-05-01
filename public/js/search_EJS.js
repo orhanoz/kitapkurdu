@@ -18,7 +18,7 @@ Vue.component('book', {
                
                 <div>
                 <div style="float:left;font-size:large">
-                <i @click="AddFavorites" class="heart fa fa-heart-o"></i>
+                  <i @click="AddFavorites" class="heart fa fa-heart-o"></i>
                 </div>
             </div>
                     <button  v-bind:id="book.selfLink" class="btn btn-lg btn-primary" v-on:click="makeComment(book.selfLink)" style="float:right; width:120px; height:40px; position:absolute; bottom:30px; right:30px; font-size: 14px;">Göster</button> 
@@ -36,18 +36,13 @@ Vue.component('book', {
       //axios({ method: 'post', url: '/book-info', data: { selflink: link } }); 
       window.location.href = '/book-info?q='+link
     },
-    AddFavorites()
-    {     
-      if(event.target.className == "heart fa fa-heart-o")
-      {
+    AddFavorites() {     
+      if(event.target.className == "heart fa fa-heart-o") {
         //Favorilendi.
-        event.target.className = "heart fas fa-heart"
-
-      }
-      else{
+        event.target.className = "heart fas fa-heart" 
+      } else{
         //Favoriden çıktı
         event.target.className = "heart fa fa-heart-o"
-
       }
     }
   }

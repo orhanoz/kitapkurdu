@@ -26,7 +26,8 @@ module.exports = {
             },
             tables: [
                 'user',
-                'comment'
+                'comment',
+                'favorite'
             ]
     
         });

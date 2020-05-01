@@ -251,7 +251,6 @@ Vue.component('book-detail', {
             });
         }
       } else {
-
         alert("Go sign in!")
       }
     }, 
@@ -278,7 +277,7 @@ Vue.component('comment', {
             <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
         </a>
         <div class="media-body">
-            <span class="text-muted pull-right" v-if="comment.userId"  style="margin-right: 5em;">
+            <span class="text-muted pull-right" v-if="comment.userId == computedUserId"  style="margin-right: 5em;">
                 <button id="edit" type="button" data-toggle="modal" v-on:click="editComment(comment)" > 
                   <span class="glyphicon">&#x270f;</span>
                   </button>
@@ -290,7 +289,7 @@ Vue.component('comment', {
             <p> {{ comment.comment }} </p>
             <div class="col-md-12">
               <span class="text-muted pull-right" style="margin-right: 3em;">
-                <small class="text-muted">{{ comment.created }}</small>
+                <small class="text-muted" style="margin-right:1em;">{{ comment.created.split('T')[0] }}</small>
               </span>
             </div>
             <form class="rating-comment">
@@ -304,6 +303,11 @@ Vue.component('comment', {
   `,
   props: {
     comment: Object
+  },
+  computed: {
+    computedUserId: function() {
+      return window.userId
+    }
   },
   methods: {
     deleteComment: function (event) {

@@ -36,11 +36,6 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING(10000),
 			allowNull: true
 		},
-		isFavorite: {
-			type: DataTypes.INTEGER(1),
-			allowNull: true,
-			defaultValue: '1'
-		},
 		created: {
 			type: DataTypes.DATE,
 			allowNull: true,

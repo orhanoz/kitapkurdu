@@ -3,19 +3,130 @@
 
 <head>
 
-    <style>
-        .form-control-borderless {
-            border: none;
-        }
 
-        .form-control-borderless:hover,
-        .form-control-borderless:active,
-        .form-control-borderless:focus {
-            border: none;
-            outline: none;
-            box-shadow: none;
-        }
-    </style>
+<style>
+    .form-control-borderless {
+        border: none;
+    }
+
+    .form-control-borderless:hover,
+    .form-control-borderless:active,
+    .form-control-borderless:focus {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+    .btn-grey{
+        background-color:#D8D8D8;
+        color:#FFF;
+    }
+    .rating-block{
+        background-color:#FAFAFA;
+        border:1px solid #EFEFEF;
+        padding:15px 15px 20px 15px;
+        border-radius:3px;
+    }
+    .bold{
+        font-weight:700;
+    }
+    .padding-bottom-7{
+        padding-bottom:7px;
+    }
+    div.some-class {
+        display: inline-block;
+        margin-right: 5px;
+        
+    }
+    .review-block{
+        background-color:#FAFAFA;
+        border:1px solid #EFEFEF;
+        padding:15px;
+        border-radius:3px;
+        margin-bottom:15px;
+    }
+    .review-block-name{
+        font-size:12px;
+        margin:10px 0;
+    }
+    .review-block-date{
+        font-size:12px;
+    }
+    .review-block-rate{
+        font-size:13px;
+        margin-bottom:15px;
+    }
+    .review-block-title{
+        font-size:15px;
+        font-weight:700;
+        margin-bottom:10px;
+    }
+    .review-block-description{
+        font-size:13px;
+    }
+    .comment-wrapper .panel-body {
+        max-height:650px;
+        overflow:auto;
+    }
+    
+    .comment-wrapper .media-list .media img {
+        width:64px;
+        height:64px;
+        border:2px solid #e5e7e8;
+    }
+    
+    .comment-wrapper .media-list .media {
+        border-bottom:1px dashed #efefef;
+        margin-bottom:25px;
+    }
+    
+    .heart {
+        color: red;
+    }
+
+    /* TABS CSS */
+    .project-tab {
+        padding: 10%;
+        margin-top: -8%;
+    }
+    .project-tab #tabs{
+        background: #007b5e;
+        color: #eee;
+    }
+    .project-tab #tabs h6.section-title{
+        color: #eee;
+    }
+    .project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+        color: #0062cc;
+        background-color: transparent;
+        border-color: transparent transparent #f3f3f3;
+        border-bottom: 3px solid !important;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .project-tab .nav-link {
+        border: 1px solid transparent;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+        color: #0062cc;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .project-tab .nav-link:hover {
+        border: none;
+    }
+    .project-tab thead{
+        background: #f3f3f3;
+        color: #333;
+    }
+    .project-tab a{
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+    }
+
+
+          
+</style>
     <title>KitapKurdu</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,10 +134,12 @@
         integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="js/axios.js"></script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="js/axios.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
 
@@ -100,18 +213,16 @@
 
             <h2 class="mb-4">Kişi Bilgileri </h2>
             <div class="container" id="app">
-                <profile v-if="user" :user="user" :comments="comments" />
+                <profile v-if="user" :user="user" :comments="comments" :favorites="favorites" />
             </div>
 
         </div>
     </div>
 
-    <% include partials/loading %>
+    <% include partials/loading %> 
 
     <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/star.js"></script>
     <script src="js/profile_EJS.js"></script>
 
 
@@ -137,7 +248,7 @@
 <script>
 
     $(document).ready(function () {
-        document.getElementById('profile-tab').click();
+        document.getElementById('nav-home-tab').click();
     })
 
 </script>

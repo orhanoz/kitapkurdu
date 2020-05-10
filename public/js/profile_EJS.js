@@ -25,8 +25,8 @@ Vue.component('profile', {
 
 
                   <ul class="nav nav-tabs" role="tablist">
-                      <li><a href="#a" data-toggle="tab">Yorumlarım</a></li>
-                      <li><a href="#b" data-toggle="tab">Favorilerim</a></li>
+                      <li class="active"><a href="#a" data-toggle="tab" aria-expanded="true">{{ computedUserId == 1 ? 'Tüm Yorumlar' : 'Yorumlarım'}}</a></li>
+                      <li v-if="computedUserId != 1"><a href="#b" data-toggle="tab">Favorilerim</a></li>
                   </ul>
               
                   <div class="tab-content">
@@ -38,7 +38,7 @@ Vue.component('profile', {
                           </div>
                       </div>
 
-                      <div class="tab-pane" id="b">
+                      <div v-if="computedUserId != 1" class="tab-pane" id="b">
                           <!-- FAVORILER LIST -->
                           <div id="searchResultFavorites" class="container"  style="margin-bottom:1%">
                             <favorite v-for="(favorite,i) in favorites" :key="i" :favorite="favorite"/>
@@ -55,6 +55,11 @@ Vue.component('profile', {
       user: Object,
       comments: Array,
       favorites: Array,
+    },
+    computed: {
+      computedUserId: function() {
+        return window.userId
+      }
     },
     methods: {
 

@@ -24,18 +24,32 @@ router.get('/', function(req, res, next) {
         });
     } else if(userId) {
         //TODO: fetch comments of 1 user!
-        models.comment.findAll({
-            where: { userId: userId }
-        }).then(function (comments) {
-            //A comment found!
-            res.json({
-                status: {
-                    message: "Congratz! User comments!",
-                    success: true,
-                },
-                payload : comments
+        if(userId == 1) {
+            models.comment.findAll().then(function (comments) {
+                //All comments
+                res.json({
+                    status: {
+                        message: "Congratz! All comments!",
+                        success: true,
+                    },
+                    payload : comments
+                });
             });
-        });
+        } else {
+            models.comment.findAll({
+                where: { userId: userId }
+            }).then(function (comments) {
+                //A comment found!
+                res.json({
+                    status: {
+                        message: "Congratz! User comments!",
+                        success: true,
+                    },
+                    payload : comments
+                });
+            });
+        }
+            
     }
 
 });

@@ -383,7 +383,7 @@ Vue.component('comment', {
             <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
         </a>
         <div class="media-body" >
-            <span class="text-muted pull-right" v-if="comment.userId == computedUserId"  style="margin-right: 10em;">
+            <span class="text-muted pull-right" v-if="comment.userId == computedUserId || computedUserId == 1"  style="margin-right: 10em;">
                 <button id="edit" type="button" data-toggle="modal" v-on:click="editComment(comment)" > 
                   <span class="glyphicon">&#x270f;</span>
                   </button>

@@ -3,7 +3,7 @@ Vue.component('book-detail', {
     <div class="col-xs-12 col-lg-12" v-if="book.volumeInfo">
      
           <div style="float:right;font-size:large;position:relative;">
-            <i @click="addFavorites($event, book)" :class="isFavorite ? 'heart fa fa-heart' : 'heart fa fa-heart-o'" ></i>
+            <i @click="addFavorites($event, book)" :class="isFavorite ? 'heart fa fa-heart' : 'heart fa fa-heart-o'" style="font-size:25px;"></i>
           </div>   
 
           <div class="row">         

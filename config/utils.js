@@ -32,7 +32,8 @@ module.exports = {
             service: 'gmail',
             auth: {
               user: "kitapkurduuuuuu",
-              pass: "Kk123456"
+              pass: "Kk123456",
+              accessToken: "AIzaSyBH7kSNYHV7GafP0vidOa9gjHpMjhwkQKc"
             },
             debug: true,
             tls: {

@@ -29,7 +29,7 @@ module.exports = {
 
         
         let config = {
-            host: 'smtp.yandex.com',
+            host: 'smtp.yandex.ru',
             port: 465,
             secure: true,
             auth: {

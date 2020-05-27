@@ -34,7 +34,11 @@ module.exports = {
               user: "kitapkurduuuuuu",
               pass: "Kk123456"
             },
-            debug: true
+            debug: true,
+            tls: {
+                // do not fail on invalid certs
+                rejectUnauthorized: false
+            }
         } 
 
         var message = {

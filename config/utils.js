@@ -46,7 +46,7 @@ module.exports = {
         var message = {
             from: 'KitapKurdu <kitapkurduuuuu@yandex.com>',
             to: email,
-            subject: 'KitapKurdu - Şifremi Unuttum',
+            subject: 'KitapKurdu - Sifremi Unuttum',
             html: rendered
         };
 

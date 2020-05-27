@@ -29,13 +29,12 @@ module.exports = {
 
         
         let config = {
-            host: 'smtp.gmail.com',
+            host: 'smtp.yandex.com',
             port: 465,
             secure: true,
             auth: {
-              user: "kitapkurduuuuuu",
+              user: "kitapkurduuuuu@yandex.com",
               pass: "Kk123456",
-              accessToken: "AIzaSyBH7kSNYHV7GafP0vidOa9gjHpMjhwkQKc"
             },
             debug: true,
             tls: {
@@ -45,7 +44,7 @@ module.exports = {
         } 
 
         var message = {
-            from: 'KitapKurdu <kitapkurduuuuuu@gmail.com>',
+            from: 'KitapKurdu <kitapkurduuuuu@yandex.com>',
             to: email,
             subject: 'KitapKurdu - Şifremi Unuttum',
             html: rendered

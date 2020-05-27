@@ -29,7 +29,9 @@ module.exports = {
 
         
         let config = {
-            service: 'gmail',
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true,
             auth: {
               user: "kitapkurduuuuuu",
               pass: "Kk123456",

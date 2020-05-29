@@ -29,17 +29,11 @@ module.exports = {
 
         
         let config = {
-            host: 'smtp.yandex.com',
-            port: 465,
-            secure: true,
+            host: 'smtp.mailgun.org',
+            port: 587,
             auth: {
-              user: "kitapkurduuuuu@yandex.com",
-              pass: "Kk123456",
-            },
-            debug: true,
-            tls: {
-                // do not fail on invalid certs
-                rejectUnauthorized: false
+              user: "postmaster@sandbox07ce63149880425685364917a53accb1.mailgun.org	",
+              pass: "740c6c331de876d44544e2eff0177634-7fba8a4e-4c82bb03",
             }
         } 
 
@@ -58,6 +52,10 @@ module.exports = {
             else {
                 console.log('Server is ready to take our messages');
                 transport.sendMail(message, function (error) {
+                    if(error){
+                        console.log('Nodemailer message FAILED!');
+                        console.log(`Nodemailer - ERROR: ${error}`);
+                    }
                     console.log('Nodemailer message sent successfully!');
                     //transport.close(); // close the connection pool
                     return;

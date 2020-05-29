@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
  
 /* POST users listing. */
-router.post('/', utils.checkSession, function(req, res, next) {
+router.post('/', function(req, res, next) {
 
     var models = req.app.locals.models;  
     let name = req.body.name.trim();

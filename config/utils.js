@@ -32,8 +32,8 @@ module.exports = {
             host: 'smtp.mailgun.org',
             port: 587,
             auth: {
-              user: "postmaster@sandbox07ce63149880425685364917a53accb1.mailgun.org	",
-              pass: "740c6c331de876d44544e2eff0177634-7fba8a4e-4c82bb03",
+              user: "postmaster@sandbox26067851a392497f8a328fc67baa53fc.mailgun.org",
+              pass: "a7491f690b82dee882fb74ddafae2ba1-7fba8a4e-9cc5f6ff",
             }
         } 
 
